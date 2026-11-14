@@ -8,6 +8,7 @@
 #include <cstdio>
 #include <chrono>
 #include <thread>
+#include <io.h>
 
 namespace {
 struct Registration {
@@ -158,6 +159,8 @@ int WINAPI wWinMain(HINSTANCE,HINSTANCE,PWSTR,int) {
   FILE* output = nullptr;
   freopen_s(&output,"windows-com.log","w",stdout);
   freopen_s(&output,"windows-com-error.log","w",stderr);
+  SetStdHandle(STD_OUTPUT_HANDLE,reinterpret_cast<HANDLE>(_get_osfhandle(_fileno(stdout))));
+  SetStdHandle(STD_ERROR_HANDLE,reinterpret_cast<HANDLE>(_get_osfhandle(_fileno(stderr))));
   setvbuf(stdout,nullptr,_IONBF,0); setvbuf(stderr,nullptr,_IONBF,0);
   int count = 1; char name[] = "WindowsCOMTest"; char* arguments[] = {name,nullptr};
   testing::InitGoogleTest(&count,arguments);
