@@ -24,6 +24,20 @@ struct Registration {
   }
 };
 struct Apartment { ~Apartment() { CoUninitialize(); } };
+int ownedCompositions(ITfContext* context) {
+  Microsoft::WRL::ComPtr<ITfContextComposition> compositions;
+  if (FAILED(context->QueryInterface(IID_PPV_ARGS(&compositions)))) { return -1; }
+  Microsoft::WRL::ComPtr<IEnumITfCompositionView> items;
+  if (FAILED(compositions->EnumCompositions(&items))) { return -1; }
+  Microsoft::WRL::ComPtr<ITfCompositionView> item;
+  ULONG fetched = 0; int count = 0;
+  while (items->Next(1,item.ReleaseAndGetAddressOf(),&fetched) == S_OK && fetched) {
+    CLSID owner;
+    if (FAILED(item->GetOwnerClsid(&owner))) { return -1; }
+    if (owner == CLSID_Jianfan) { ++count; }
+  }
+  return count;
+}
 }
 
 TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
@@ -125,7 +139,6 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   ASSERT_EQ(available,S_OK);
   ASSERT_EQ(provider.As(&processor),S_OK);
   ASSERT_EQ(processor.As(&keys),S_OK);
-  ULONG endedBeforeTyping = store->ended;
   EXPECT_TRUE(store->text.empty());
   for (WCHAR key : std::wstring(L"SU3CL3")) {
     BOOL eaten = FALSE;
@@ -136,7 +149,7 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
     std::cout << "Key " << static_cast<unsigned int>(key) << ": ended compositions " << store->ended << "\n";
   }
   EXPECT_EQ(store->text,L"你好");
-  EXPECT_EQ(store->ended,endedBeforeTyping);
+  EXPECT_EQ(ownedCompositions(context.Get()),1);
   BOOL opened = FALSE;
   ASSERT_EQ(keys->OnKeyDown(context.Get(),VK_DOWN,0,&opened),S_OK);
   ASSERT_TRUE(opened);
@@ -154,12 +167,13 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   ASSERT_NE(candidates.Get(),nullptr);
   UINT count = 0; EXPECT_EQ(candidates->GetCount(&count),S_OK); EXPECT_GT(count,0u);
   EXPECT_EQ(candidates->Abort(),S_OK);
+  EXPECT_EQ(ownedCompositions(context.Get()),1);
   candidates.Reset(); element.Reset(); elements.Reset(); ui.Reset();
   BOOL eaten = FALSE;
   ASSERT_EQ(keys->OnKeyDown(context.Get(),VK_RETURN,0,&eaten),S_OK);
   EXPECT_TRUE(eaten);
   EXPECT_EQ(store->text,L"你好");
-  EXPECT_EQ(store->ended,endedBeforeTyping + 1);
+  EXPECT_EQ(ownedCompositions(context.Get()),0);
   EXPECT_EQ(profiles->DeactivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS),S_OK);
   EXPECT_EQ(profiles->ReleaseInputProcessor(CLSID_Jianfan,0),S_OK);
   provider.Reset(); profiles.Reset();

@@ -258,7 +258,10 @@ HRESULT TextService::process(ITfContext* context,TfEditCookie cookie,WPARAM key)
   return update(context,cookie,Wide(engine_->composition()),false);
 }
 void TextService::closeUI() {
-  if (popup_) { popup_->choose = {}; popup_->abort = {}; popup_->Show(FALSE); }
+  if (popup_) {
+    popup_->choose = {}; popup_->abort = {}; popup_->Show(FALSE);
+    UiaDisconnectProvider(static_cast<IRawElementProviderSimple*>(popup_.Get()));
+  }
   if (uiBegun_ && uiManager_) { uiManager_->EndUIElement(uiId_); }
   uiBegun_ = false; popup_.Reset(); associations_ = false;
 }
