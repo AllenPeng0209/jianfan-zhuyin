@@ -75,6 +75,13 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   while (PeekMessageW(&message,nullptr,0,0,PM_REMOVE)) { TranslateMessage(&message); DispatchMessageW(&message); }
   ASSERT_EQ(LOWORD(GetKeyboardLayout(0)),JianfanLanguage);
   TF_INPUTPROCESSORPROFILE profile{};
+  ComPtr<ITfInputProcessorProfiles> descriptionProvider;
+  ASSERT_EQ(profiles.As(&descriptionProvider),S_OK);
+  BSTR description = nullptr;
+  HRESULT described = descriptionProvider->GetLanguageProfileDescription(CLSID_Jianfan,JianfanLanguage,GUID_JianfanProfile,&description);
+  std::cout << "Profile description status: " << described << "\n";
+  if (description) { SysFreeString(description); }
+  EXPECT_EQ(described,S_OK);
   ASSERT_EQ(profiles->GetProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,&profile),S_OK);
   std::cout << "Registered profile type: " << profile.dwProfileType << "; flags: " << profile.dwFlags << "\n";
   ASSERT_EQ(profiles->ActivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS | TF_IPPMF_ENABLEPROFILE),S_OK);

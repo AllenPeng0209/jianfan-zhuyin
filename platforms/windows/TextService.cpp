@@ -44,8 +44,14 @@ HRESULT registerProfile(bool install) {
 #else
     constexpr BOOL enabled = TRUE;
 #endif
-    result = profiles->RegisterProfile(CLSID_Jianfan,JianfanLanguage,GUID_JianfanProfile,description.c_str(),static_cast<ULONG>(description.size()),
-      path.c_str(),length,0,nullptr,0,enabled,0);
+    Ptr<ITfInputProcessorProfiles> registration;
+    result = profiles.As(&registration);
+    if (FAILED(result)) { return result; }
+    result = registration->Register(CLSID_Jianfan);
+    if (FAILED(result)) { return result; }
+    result = registration->AddLanguageProfile(CLSID_Jianfan,JianfanLanguage,GUID_JianfanProfile,
+      description.c_str(),static_cast<ULONG>(description.size()),path.c_str(),length,0);
+    if (SUCCEEDED(result)) { result = registration->EnableLanguageProfile(CLSID_Jianfan,JianfanLanguage,GUID_JianfanProfile,enabled); }
   } else { result = profiles->UnregisterProfile(CLSID_Jianfan,JianfanLanguage,GUID_JianfanProfile,0); }
   if (FAILED(result) && install) { return result; }
   Ptr<ITfCategoryMgr> category;
