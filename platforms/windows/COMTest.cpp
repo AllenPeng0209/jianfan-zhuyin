@@ -77,6 +77,10 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   TF_INPUTPROCESSORPROFILE profile{};
   ComPtr<ITfInputProcessorProfiles> descriptionProvider;
   ASSERT_EQ(profiles.As(&descriptionProvider),S_OK);
+  ASSERT_EQ(descriptionProvider->EnableLanguageProfile(CLSID_Jianfan,JianfanLanguage,GUID_JianfanProfile,TRUE),S_OK);
+  BOOL enabled = FALSE;
+  ASSERT_EQ(descriptionProvider->IsEnabledLanguageProfile(CLSID_Jianfan,JianfanLanguage,GUID_JianfanProfile,&enabled),S_OK);
+  ASSERT_TRUE(enabled);
   BSTR description = nullptr;
   HRESULT described = descriptionProvider->GetLanguageProfileDescription(CLSID_Jianfan,JianfanLanguage,GUID_JianfanProfile,&description);
   std::cout << "Profile description status: " << described << "\n";
