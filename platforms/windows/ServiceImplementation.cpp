@@ -180,13 +180,16 @@ HRESULT TextService::update(ITfContext* context,TfEditCookie cookie,const std::w
     if (value.empty()) { return S_OK; }
     Ptr<ITfInsertAtSelection> insertion;
     if (FAILED(result = context->QueryInterface(IID_PPV_ARGS(&insertion)))) { return result; }
-    if (FAILED(result = insertion->InsertTextAtSelection(cookie,0,value.data(),static_cast<LONG>(value.size()),&range))) { return result; }
-    if (!commit) {
+    if (commit) {
+      if (FAILED(result = insertion->InsertTextAtSelection(cookie,0,value.data(),static_cast<LONG>(value.size()),&range))) { return result; }
+    } else {
+      if (FAILED(result = insertion->InsertTextAtSelection(cookie,TF_IAS_QUERYONLY,nullptr,0,&range))) { return result; }
       Ptr<ITfContextComposition> compositions;
       if (FAILED(result = context->QueryInterface(IID_PPV_ARGS(&compositions)))) { return result; }
       result = compositions->StartComposition(cookie,range.Get(),this,&composition_);
-      if (FAILED(result) || !composition_) { range->SetText(cookie,0,L"",0); engine_->commit(); return E_FAIL; }
+      if (FAILED(result) || !composition_) { engine_->commit(); return E_FAIL; }
       context_ = context;
+      if (FAILED(result = range->SetText(cookie,0,value.data(),static_cast<LONG>(value.size())))) { engine_->commit(); finish(cookie); return result; }
     }
   }
   Ptr<ITfRange> selection;
