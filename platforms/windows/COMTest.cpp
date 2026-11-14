@@ -86,7 +86,14 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   std::cout << "Profile description status: " << described << "\n";
   if (description) { SysFreeString(description); }
   EXPECT_EQ(described,S_OK);
-  ASSERT_EQ(profiles->GetProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,&profile),S_OK);
+  Ptr<ITfCategoryMgr> categories;
+  ASSERT_EQ(CoCreateInstance(CLSID_TF_CategoryMgr,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&categories)),S_OK);
+  const GUID* kinds[] = {&GUID_TFCAT_TIP_KEYBOARD,&GUID_TFCAT_TIP_SPEECH,&GUID_TFCAT_TIP_HANDWRITING};
+  GUID category{};
+  HRESULT categorized = categories->FindClosestCategory(CLSID_Jianfan,&category,kinds,3);
+  std::cout << "Category query: " << categorized << "; keyboard category: " << (category == GUID_TFCAT_TIP_KEYBOARD) << "\n";
+  EXPECT_EQ(categorized,S_OK); EXPECT_EQ(category,GUID_TFCAT_TIP_KEYBOARD);
+  EXPECT_EQ(profiles->GetProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,&profile),S_OK);
   std::cout << "Registered profile type: " << profile.dwProfileType << "; flags: " << profile.dwFlags << "\n";
   ASSERT_EQ(profiles->ActivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS | TF_IPPMF_ENABLEPROFILE),S_OK);
   ComPtr<ITfFunctionProvider> provider;
