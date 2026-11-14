@@ -133,6 +133,7 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
     ASSERT_TRUE(eaten);
     ASSERT_EQ(keys->OnKeyDown(context.Get(),key,0,&eaten),S_OK);
     ASSERT_TRUE(eaten);
+    std::cout << "Key " << static_cast<unsigned int>(key) << ": ended compositions " << store->ended << "\n";
   }
   EXPECT_EQ(store->text,L"你好");
   EXPECT_EQ(store->ended,endedBeforeTyping);

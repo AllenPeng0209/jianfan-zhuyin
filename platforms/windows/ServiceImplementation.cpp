@@ -324,10 +324,23 @@ HRESULT TextService::OnCompositionTerminated(TfEditCookie,ITfComposition*) {
 }
 HRESULT TextService::OnSetFocus(BOOL foreground) { if (!foreground) { finishCurrent(); } else if (engine_ && engine_->composition().empty()) { loadPersonalData(); } return S_OK; }
 HRESULT TextService::OnInitDocumentMgr(ITfDocumentMgr*) { return S_OK; }
-HRESULT TextService::OnUninitDocumentMgr(ITfDocumentMgr*) { finishCurrent(); return S_OK; }
-HRESULT TextService::OnSetFocus(ITfDocumentMgr*,ITfDocumentMgr*) { finishCurrent(); return S_OK; }
-HRESULT TextService::OnPushContext(ITfContext*) { finishCurrent(); return S_OK; }
-HRESULT TextService::OnPopContext(ITfContext*) { finishCurrent(); return S_OK; }
+HRESULT TextService::OnUninitDocumentMgr(ITfDocumentMgr* document) {
+  Ptr<ITfDocumentMgr> current;
+  if (context_ && SUCCEEDED(context_->GetDocumentMgr(&current)) && current.Get() == document) { finishCurrent(); }
+  return S_OK;
+}
+HRESULT TextService::OnSetFocus(ITfDocumentMgr* document,ITfDocumentMgr*) {
+  Ptr<ITfDocumentMgr> current;
+  if (context_ && SUCCEEDED(context_->GetDocumentMgr(&current)) && current.Get() != document) { finishCurrent(); }
+  return S_OK;
+}
+HRESULT TextService::OnPushContext(ITfContext* context) {
+  if (!context_ || context_.Get() == context) { return S_OK; }
+  Ptr<ITfDocumentMgr> current,changed;
+  if (SUCCEEDED(context_->GetDocumentMgr(&current)) && SUCCEEDED(context->GetDocumentMgr(&changed)) && current.Get() == changed.Get()) { finishCurrent(); }
+  return S_OK;
+}
+HRESULT TextService::OnPopContext(ITfContext* context) { if (context_.Get() == context) { finishCurrent(); } return S_OK; }
 HRESULT TextService::EnumDisplayAttributeInfo(IEnumTfDisplayAttributeInfo** result) { if (!result) { return E_POINTER; } *result = new DisplayAttributes(); return S_OK; }
 HRESULT TextService::GetDisplayAttributeInfo(REFGUID id,ITfDisplayAttributeInfo** result) { if (!result) { return E_POINTER; } *result = nullptr; if (id != GUID_JianfanDisplay) { return E_INVALIDARG; } *result = new DisplayAttribute(); return S_OK; }
 HRESULT TextService::GetType(GUID* result) { if (!result) { return E_POINTER; } *result = CLSID_Jianfan; return S_OK; }
