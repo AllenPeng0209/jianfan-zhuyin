@@ -58,3 +58,15 @@ jobs:
             dist/*.dmg
             dist/SHA256SUMS.txt
           retention-days: 14
+  windows-package:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: ./scripts/build-windows.ps1
+      - uses: actions/upload-artifact@v7
+        with:
+          name: windows-installer-candidate
+          path: |
+            dist/JianfanZhuyin-*-windows-x64.exe
+            dist/windows-stage/SHA256SUMS.txt
+          retention-days: 14
