@@ -1,6 +1,7 @@
 #include "Common.h"
 #include "OfflineStore.h"
 #include "SettingsIds.h"
+#include "ProfileRegistration.h"
 #include <commctrl.h>
 #include <commdlg.h>
 #include <optional>
@@ -207,8 +208,12 @@ class SettingsWindow {
 };
 }
 
-int WINAPI wWinMain(HINSTANCE instance,HINSTANCE,PWSTR,int show) {
+int WINAPI wWinMain(HINSTANCE instance,HINSTANCE,PWSTR arguments,int show) {
   gModule = instance; CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
+  if (std::wstring(arguments) == L"--enable" || std::wstring(arguments) == L"--disable") {
+    bool enabled = std::wstring(arguments) == L"--enable";
+    bool result = SetUserProfileEnabled(enabled); CoUninitialize(); return result ? 0 : 1;
+  }
   INITCOMMONCONTROLSEX controls{sizeof(controls),ICC_LISTVIEW_CLASSES}; InitCommonControlsEx(&controls);
   int result = 1;
   try {

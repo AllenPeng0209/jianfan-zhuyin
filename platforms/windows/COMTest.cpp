@@ -4,12 +4,13 @@
 #include "Guids.h"
 #include "gtest/gtest.h"
 #include "TestTextStore.h"
+#include "ProfileRegistration.h"
 
 namespace {
 struct Registration {
   HMODULE module = nullptr;
   HRESULT (__stdcall *unregister)() = nullptr;
-  ~Registration() { if (unregister) { unregister(); } if (module) { FreeLibrary(module); } }
+  ~Registration() { if (unregister) { SetUserProfileEnabled(false); unregister(); } if (module) { FreeLibrary(module); } }
 };
 struct Apartment { ~Apartment() { CoUninitialize(); } };
 }
@@ -25,6 +26,7 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   registration.unregister = reinterpret_cast<HRESULT (__stdcall *)()>(GetProcAddress(module,"DllUnregisterServer"));
   ASSERT_NE(install,nullptr); ASSERT_NE(registration.unregister,nullptr);
   ASSERT_EQ(install(),S_OK);
+  ASSERT_TRUE(SetUserProfileEnabled(true));
   auto factoryFunction = reinterpret_cast<HRESULT (__stdcall *)(REFCLSID,REFIID,void**)>(GetProcAddress(module,"DllGetClassObject"));
   ASSERT_NE(factoryFunction,nullptr);
   ComPtr<IClassFactory> factory;
