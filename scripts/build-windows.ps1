@@ -21,5 +21,5 @@ $checksums = Get-ChildItem dist/JianfanZhuyin-*-windows-x64.exe | ForEach-Object
     $hash = Get-FileHash $_.FullName -Algorithm SHA256
     "{0}  {1}" -f $hash.Hash.ToLowerInvariant(), $_.Name
 }
-$checksums | Set-Content -Encoding utf8NoBOM dist/SHA256SUMS-Windows.txt
+[System.IO.File]::WriteAllText((Join-Path $PWD 'dist/SHA256SUMS-Windows.txt'), (($checksums -join "`n") + "`n"), [System.Text.UTF8Encoding]::new($false))
 $checksums
