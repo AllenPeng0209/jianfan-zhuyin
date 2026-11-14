@@ -1,5 +1,4 @@
 #include "TextService.h"
-#include <cstdio>
 
 HINSTANCE gModule = nullptr;
 std::atomic<long> gObjects{0};
@@ -76,14 +75,7 @@ STDAPI DllGetClassObject(REFCLSID id,REFIID iid,void** result) {
   auto factory = new (std::nothrow) Factory(); if (!factory) { return E_OUTOFMEMORY; }
   HRESULT outcome = factory->QueryInterface(iid,result); factory->Release(); return outcome;
 }
-STDAPI DllCanUnloadNow() {
-#ifdef JIANFAN_TEST_PROFILE
-  static std::atomic<long> previous{-1};
-  long objects = gObjects.load();
-  if (previous.exchange(objects) != objects) { std::fprintf(stderr,"Jianfan unload state: objects=%ld locks=%ld\n",objects,gLocks.load()); }
-#endif
-  return gObjects == 0 && gLocks == 0 ? S_OK : S_FALSE;
-}
+STDAPI DllCanUnloadNow() { return gObjects == 0 && gLocks == 0 ? S_OK : S_FALSE; }
 STDAPI DllRegisterServer() {
   HRESULT initialized = CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
   if (FAILED(initialized) && initialized != RPC_E_CHANGED_MODE) { return initialized; }

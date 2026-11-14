@@ -2,7 +2,11 @@ $ErrorActionPreference = 'Stop'
 Set-Location (Split-Path -Parent $PSScriptRoot)
 $directory = Join-Path $PWD 'build/Windows/platforms/windows/Release'
 $dll = Join-Path $directory 'JianfanIMETest.dll'
-$registrar = Join-Path $env:WINDIR 'System32/regsvr32.exe'
+$bytes = [System.IO.File]::ReadAllBytes($dll)
+$pe = [BitConverter]::ToInt32($bytes, 0x3c)
+$machine = [BitConverter]::ToUInt16($bytes, $pe + 4)
+$systemDirectory = if ($machine -eq 0x14c) { 'SysWOW64' } else { 'System32' }
+$registrar = Join-Path $env:WINDIR "$systemDirectory/regsvr32.exe"
 try {
     # Register in a separate process, matching the actual installer workflow.
     $registered = Start-Process $registrar -ArgumentList @('/s', "`"$dll`"") -Wait -PassThru

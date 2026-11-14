@@ -22,10 +22,14 @@ jobs:
       - run: build/EngineTests/Vendor/McBopomofo/Source/Engine/gramambular2/gramambular2_test
   windows:
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        architecture: [x64, Win32]
     steps:
       - uses: actions/checkout@v7
       - run: python scripts/generate-data.py
-      - run: cmake -S . -B build/Windows -A x64
+      - run: cmake -S . -B build/Windows -A ${{ matrix.architecture }}
       - run: cmake --build build/Windows --config Release --target JianfanCoreTest McBopomofoLMLibTest --parallel 4
       - run: build/Windows/Release/JianfanCoreTest.exe
       - run: build/Windows/Vendor/McBopomofo/Source/Engine/Release/McBopomofoLMLibTest.exe
@@ -38,7 +42,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: windows-test-results
+          name: windows-test-results-${{ matrix.architecture }}
           path: |
             windows-word-manager.png
             windows-com*.log
