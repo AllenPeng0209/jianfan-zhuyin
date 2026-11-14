@@ -30,12 +30,7 @@ jobs:
       - run: build/Windows/Release/JianfanCoreTest.exe
       - run: build/Windows/Vendor/McBopomofo/Source/Engine/Release/McBopomofoLMLibTest.exe
       - run: cmake --build build/Windows --config Release --target WindowsCOMTest --parallel 4
-      - shell: pwsh
-        run: |
-          $test = Start-Process build/Windows/platforms/windows/Release/WindowsCOMTest.exe -Wait -PassThru
-          Get-Content windows-com.log
-          Get-Content windows-com-error.log
-          if ($test.ExitCode -ne 0) { exit $test.ExitCode }
+      - run: ./scripts/test-windows-native.ps1
       - run: cmake --build build/Windows --config Release --target WindowsSettingsUITest --parallel 4
         if: always()
       - run: build/Windows/platforms/windows/Release/WindowsSettingsUITest.exe

@@ -33,8 +33,7 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   auto install = reinterpret_cast<HRESULT (__stdcall *)()>(GetProcAddress(module,"DllRegisterServer"));
   registration.unregister = reinterpret_cast<HRESULT (__stdcall *)()>(GetProcAddress(module,"DllUnregisterServer"));
   ASSERT_NE(install,nullptr); ASSERT_NE(registration.unregister,nullptr);
-  ASSERT_EQ(install(),S_OK);
-  ASSERT_TRUE(SetUserProfileEnabled(true));
+  // The launcher registers before this process starts, so TSF caches are fresh.
   DWORD session = 0; ProcessIdToSessionId(GetCurrentProcessId(),&session);
   std::cout << "Windows test session: " << session << "\n";
   auto factoryFunction = reinterpret_cast<HRESULT (__stdcall *)(REFCLSID,REFIID,void**)>(GetProcAddress(module,"DllGetClassObject"));
