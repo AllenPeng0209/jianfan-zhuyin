@@ -22,6 +22,8 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 
 #include <cassert>
+#include <chrono>
+#include <cstring>
 #include <cstdio>
 #include <filesystem>
 #include <fstream>
@@ -34,26 +36,30 @@
 
 namespace McBopomofo {
 
+std::string Utf8Path(const std::filesystem::path& path) {
+  auto value = path.u8string();
+  return {value.begin(), value.end()};
+}
+
+std::filesystem::path UniquePath() {
+  return std::filesystem::temp_directory_path() / std::filesystem::u8path(
+      "org.openvanilla.mcbopomofo-離線-" +
+      std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()));
+}
+
 class TempFile {
  public:
   TempFile(const char* initData, size_t length) {
-    std::filesystem::path p = std::filesystem::temp_directory_path() /
-                              "org.openvanilla.mcbopomofo.XXXXXX";
-    path_ = p.native();
-
-    int fd = mkstemp(path_.data());
-    assert(fd != -1);
-
-    ssize_t written = write(fd, initData, length);
-    assert(static_cast<size_t>(written) == length);
-    (void)written;
-
-    close(fd);
+    auto path = UniquePath();
+    path_ = Utf8Path(path);
+    std::ofstream out(path, std::ios::binary);
+    out.write(initData, static_cast<std::streamsize>(length));
+    assert(out.good());
   }
 
   ~TempFile() {
     std::error_code ec;
-    bool result = std::filesystem::remove(path_, ec);
+    bool result = std::filesystem::remove(std::filesystem::u8path(path_), ec);
     assert(result);
     (void)result;
   }
@@ -67,17 +73,16 @@ class TempFile {
 class TempDir {
  public:
   TempDir() {
-    std::filesystem::path p = std::filesystem::temp_directory_path() /
-                              "org.openvanilla.mcbopomofo.XXXXXX";
-    path_ = p.native();
-    char* result = mkdtemp(path_.data());
-    assert(result != nullptr);
-    fprintf(stderr, "TEMPDIR: %s\n", result);
+    auto path = UniquePath();
+    path_ = Utf8Path(path);
+    bool created = std::filesystem::create_directory(path);
+    assert(created);
+    (void)created;
   }
 
   ~TempDir() {
     std::error_code ec;
-    bool result = std::filesystem::remove(path_, ec);
+    bool result = std::filesystem::remove(std::filesystem::u8path(path_), ec);
     assert(result);
     (void)result;
   }
@@ -154,10 +159,11 @@ TEST(MemoryMappedFileTest, BasicFunctionalities) {
   EXPECT_TRUE(mf4.isOpen());
 
   // Flip a byte of the underlying file. The map should reflect that.
-  FILE* f = fopen(temp->path(), "r+b");
-  EXPECT_NE(f, nullptr);
-  EXPECT_NE(fputc(~buf[0], f), EOF);
-  EXPECT_EQ(fclose(f), 0);
+  std::fstream f(std::filesystem::u8path(temp->path()), std::ios::in | std::ios::out | std::ios::binary);
+  ASSERT_TRUE(f.good());
+  f.put(static_cast<char>(~buf[0]));
+  f.flush();
+  f.close();
 
   EXPECT_NE(memcmp(mf4.data(), buf, kBufSize), 0);
   // The rest of the data should be the same.
@@ -190,7 +196,7 @@ TEST(MemoryMappedFileTest, OpenFailureOnEmptyFile) {
   out.close();
 
   MemoryMappedFile mf;
-  EXPECT_FALSE(mf.open(tmp_file_path.c_str()));
+  EXPECT_FALSE(mf.open(Utf8Path(tmp_file_path).c_str()));
   EXPECT_FALSE(mf.isOpen());
   EXPECT_EQ(mf.length(), 0);
   EXPECT_EQ(mf.data(), nullptr);

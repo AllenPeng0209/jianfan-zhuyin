@@ -17,4 +17,4 @@ commands = [
     ["curation.builders.phrase_deriver", "data.txt", "associated-phrases-v2.txt", "associated-punctuation.txt"],
 ]
 for command in commands:
-    subprocess.run([sys.executable, "-m", *command], cwd=directory, check=True)
+    subprocess.run([sys.executable, "-X", "utf8", "-m", *command], cwd=directory, check=True)
