@@ -51,15 +51,16 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   ComPtr<IEnumTfUIElements> elements;
   ASSERT_EQ(ui->EnumUIElements(&elements),S_OK);
   ComPtr<ITfCandidateListUIElementBehavior> candidates;
-  ULONG fetched = 0; DWORD id;
-  while (elements->Next(1,&id,&fetched) == S_OK && fetched) {
-    ComPtr<ITfUIElement> element; GUID guid;
-    if (SUCCEEDED(ui->GetUIElement(id,&element)) && SUCCEEDED(element->GetGUID(&guid)) && guid == GUID_JianfanCandidates) { element.As(&candidates); break; }
+  ULONG fetched = 0;
+  ComPtr<ITfUIElement> element;
+  while (elements->Next(1,element.ReleaseAndGetAddressOf(),&fetched) == S_OK && fetched) {
+    GUID guid;
+    if (SUCCEEDED(element->GetGUID(&guid)) && guid == GUID_JianfanCandidates) { element.As(&candidates); break; }
   }
   ASSERT_NE(candidates.Get(),nullptr);
   UINT count = 0; EXPECT_EQ(candidates->GetCount(&count),S_OK); EXPECT_GT(count,0u);
   EXPECT_EQ(candidates->Abort(),S_OK);
-  candidates.Reset(); elements.Reset(); ui.Reset();
+  candidates.Reset(); element.Reset(); elements.Reset(); ui.Reset();
   BOOL eaten = FALSE;
   ASSERT_EQ(keys->OnKeyDown(context.Get(),VK_RETURN,0,&eaten),S_OK);
   EXPECT_TRUE(eaten);

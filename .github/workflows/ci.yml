@@ -28,6 +28,15 @@ jobs:
       - run: build/Windows/Vendor/McBopomofo/Source/Engine/Release/McBopomofoLMLibTest.exe
       - run: cmake --build build/Windows --config Release --target WindowsCOMTest --parallel 4
       - run: build/Windows/platforms/windows/Release/WindowsCOMTest.exe
+      - run: cmake --build build/Windows --config Release --target WindowsSettingsUITest --parallel 4
+      - run: build/Windows/platforms/windows/Release/WindowsSettingsUITest.exe
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: windows-test-results
+          path: windows-word-manager.png
+          if-no-files-found: ignore
+          retention-days: 14
   macos:
     runs-on: xcode-27
     steps:
