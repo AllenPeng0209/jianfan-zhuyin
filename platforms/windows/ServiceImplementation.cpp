@@ -1,5 +1,6 @@
 #include "TextService.h"
 #include <algorithm>
+#include <cstdio>
 
 namespace {
 class Edit final : public ITfEditSession,public Counted {
@@ -75,12 +76,18 @@ HRESULT TextService::Activate(ITfThreadMgr* manager,TfClientId client) { return 
 HRESULT TextService::ActivateEx(ITfThreadMgr* manager,TfClientId client,DWORD) {
   if (!manager || client == TF_CLIENTID_NULL || manager_) { return E_INVALIDARG; }
   try {
+#ifdef JIANFAN_TEST_PROFILE
+    std::fprintf(stderr,"Jianfan activation: creating engine\n");
+#endif
     engine_ = std::make_unique<Jianfan::Session>(EngineConfig());
     if (!engine_->ready()) { return E_FAIL; }
     loadPersonalData();
     manager_ = manager; client_ = client;
     HRESULT result = manager_.As(&keys_);
     if (FAILED(result) || FAILED(result = keys_->AdviseKeyEventSink(client_,this,TRUE))) { Deactivate(); return result; }
+#ifdef JIANFAN_TEST_PROFILE
+    std::fprintf(stderr,"Jianfan activation: keyboard sink ready\n");
+#endif
     manager_.As(&uiManager_);
     Ptr<ITfSource> source;
     if (SUCCEEDED(manager_.As(&source))) { source->AdviseSink(IID_ITfThreadMgrEventSink,static_cast<ITfThreadMgrEventSink*>(this),&sinkCookie_); }
@@ -93,7 +100,12 @@ HRESULT TextService::ActivateEx(ITfThreadMgr* manager,TfClientId client,DWORD) {
     keys_->PreserveKey(client_,GUID_JianfanToggleScript,&script,L"簡繁切換",4);
     keys_->PreserveKey(client_,GUID_JianfanConfigure,&settings,L"管理詞庫",4);
     return S_OK;
-  } catch (...) { Deactivate(); return E_FAIL; }
+  } catch (const std::exception& error) {
+#ifdef JIANFAN_TEST_PROFILE
+    std::fprintf(stderr,"Jianfan activation exception: %s\n",error.what());
+#endif
+    Deactivate(); return E_FAIL;
+  }
 }
 HRESULT TextService::Deactivate() {
   finishCurrent(); closeUI();

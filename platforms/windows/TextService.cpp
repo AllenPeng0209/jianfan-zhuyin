@@ -30,7 +30,7 @@ HRESULT writeRegistry(const std::wstring& key,const wchar_t* name,const std::wst
   result = RegSetValueExW(handle,name,0,REG_SZ,reinterpret_cast<const BYTE*>(value.c_str()),static_cast<DWORD>((value.size()+1)*sizeof(wchar_t)));
   RegCloseKey(handle); return HRESULT_FROM_WIN32(result);
 }
-const GUID categories[] = {GUID_TFCAT_TIP_KEYBOARD,GUID_TFCAT_TIPCAP_UIELEMENTENABLED,GUID_TFCAT_TIPCAP_IMMERSIVESUPPORT};
+const GUID categories[] = {GUID_TFCAT_TIP_KEYBOARD,GUID_TFCAT_DISPLAYATTRIBUTEPROVIDER,GUID_TFCAT_TIPCAP_UIELEMENTENABLED,GUID_TFCAT_TIPCAP_IMMERSIVESUPPORT};
 HRESULT registerProfile(bool install) {
   Ptr<ITfInputProcessorProfileMgr> profiles;
   HRESULT result = CoCreateInstance(CLSID_TF_InputProcessorProfiles,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&profiles));

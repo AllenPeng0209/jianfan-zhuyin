@@ -40,13 +40,6 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   ASSERT_EQ(CoCreateInstance(CLSID_TF_ThreadMgr,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&manager)),S_OK);
   TfClientId client = TF_CLIENTID_NULL;
   ASSERT_EQ(manager->Activate(&client),S_OK);
-  ComPtr<ITfInputProcessorProfileMgr> profiles;
-  ASSERT_EQ(CoCreateInstance(CLSID_TF_InputProcessorProfiles,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&profiles)),S_OK);
-  ASSERT_EQ(profiles->ActivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS | TF_IPPMF_ENABLEPROFILE),S_OK);
-  ComPtr<ITfFunctionProvider> provider;
-  ASSERT_EQ(manager->GetFunctionProvider(CLSID_Jianfan,&provider),S_OK);
-  ASSERT_EQ(provider.As(&processor),S_OK);
-  ASSERT_EQ(processor.As(&keys),S_OK);
   ComPtr<TestTextStore> store;
   store.Attach(new TestTextStore());
   ComPtr<ITfDocumentMgr> document;
@@ -56,6 +49,17 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   ASSERT_EQ(document->CreateContext(client,0,static_cast<ITextStoreACP*>(store.Get()),&context,&cookie),S_OK);
   ASSERT_EQ(document->Push(context.Get()),S_OK);
   ASSERT_EQ(manager->SetFocus(document.Get()),S_OK);
+  ComPtr<ITfTextInputProcessorEx> registeredService;
+  ASSERT_EQ(CoCreateInstance(CLSID_Jianfan,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&registeredService)),S_OK);
+  registeredService.Reset();
+  std::cout << "Current keyboard language: " << LOWORD(GetKeyboardLayout(0)) << "; test language: " << JianfanLanguage << "\n";
+  ComPtr<ITfInputProcessorProfileMgr> profiles;
+  ASSERT_EQ(CoCreateInstance(CLSID_TF_InputProcessorProfiles,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&profiles)),S_OK);
+  ASSERT_EQ(profiles->ActivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS | TF_IPPMF_ENABLEPROFILE),S_OK);
+  ComPtr<ITfFunctionProvider> provider;
+  ASSERT_EQ(manager->GetFunctionProvider(CLSID_Jianfan,&provider),S_OK);
+  ASSERT_EQ(provider.As(&processor),S_OK);
+  ASSERT_EQ(processor.As(&keys),S_OK);
   for (WCHAR key : std::wstring(L"SU3CL3")) {
     BOOL eaten = FALSE;
     ASSERT_EQ(keys->OnTestKeyDown(context.Get(),key,0,&eaten),S_OK);
