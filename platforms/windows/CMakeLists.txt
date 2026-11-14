@@ -1,4 +1,5 @@
-add_library(JianfanIME SHARED TextService.cpp)
+add_library(JianfanIME SHARED TextService.cpp TextService.def Resources/Jianfan.rc)
+target_include_directories(JianfanIME PRIVATE Resources)
 target_link_libraries(JianfanIME PRIVATE JianfanCore msctf ole32 oleaut32 uuid advapi32 shell32 shlwapi user32 gdi32)
 target_compile_definitions(JianfanIME PRIVATE UNICODE _UNICODE)
 set_target_properties(JianfanIME PROPERTIES PREFIX "" OUTPUT_NAME "JianfanIME")

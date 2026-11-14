@@ -3,6 +3,7 @@
 #include <wrl/client.h>
 #include "Guids.h"
 #include "gtest/gtest.h"
+#include "TestTextStore.h"
 
 TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   using Microsoft::WRL::ComPtr;
@@ -24,7 +25,33 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   TfClientId client = TF_CLIENTID_NULL;
   ASSERT_EQ(manager->Activate(&client),S_OK);
   EXPECT_EQ(processor->ActivateEx(manager.Get(),client,TF_TMAE_UIELEMENTENABLEDONLY),S_OK);
+  ComPtr<TestTextStore> store;
+  store.Attach(new TestTextStore());
+  ComPtr<ITfDocumentMgr> document;
+  ASSERT_EQ(manager->CreateDocumentMgr(&document),S_OK);
+  ComPtr<ITfContext> context;
+  TfEditCookie cookie;
+  ASSERT_EQ(document->CreateContext(client,0,static_cast<ITextStoreACP*>(store.Get()),&context,&cookie),S_OK);
+  ASSERT_EQ(document->Push(context.Get()),S_OK);
+  ASSERT_EQ(manager->SetFocus(document.Get()),S_OK);
+  for (WCHAR key : std::wstring(L"SU3CL3")) {
+    BOOL eaten = FALSE;
+    ASSERT_EQ(keys->OnTestKeyDown(context.Get(),key,0,&eaten),S_OK);
+    ASSERT_TRUE(eaten);
+    ASSERT_EQ(keys->OnKeyDown(context.Get(),key,0,&eaten),S_OK);
+    ASSERT_TRUE(eaten);
+  }
+  EXPECT_EQ(store->text,L"你好");
+  EXPECT_EQ(store->ended,0u);
+  BOOL eaten = FALSE;
+  ASSERT_EQ(keys->OnKeyDown(context.Get(),VK_RETURN,0,&eaten),S_OK);
+  EXPECT_TRUE(eaten);
+  EXPECT_EQ(store->text,L"你好");
+  EXPECT_EQ(store->ended,1u);
   EXPECT_EQ(processor->Deactivate(),S_OK);
+  manager->SetFocus(nullptr);
+  document->Pop(TF_POPF_ALL);
+  context.Reset(); document.Reset(); store.Reset();
   manager->Deactivate();
   manager.Reset(); keys.Reset(); display.Reset(); processor.Reset(); factory.Reset();
   auto canUnload = reinterpret_cast<HRESULT (__stdcall *)()>(GetProcAddress(module,"DllCanUnloadNow"));
