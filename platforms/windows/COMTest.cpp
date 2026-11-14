@@ -6,6 +6,8 @@
 #include "TestTextStore.h"
 #include "ProfileRegistration.h"
 #include <cstdio>
+#include <chrono>
+#include <thread>
 
 namespace {
 struct Registration {
@@ -96,7 +98,15 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   std::cout << "Registered profile type: " << profile.dwProfileType << "; flags: " << profile.dwFlags << "\n";
   ASSERT_EQ(profiles->ActivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS | TF_IPPMF_ENABLEPROFILE),S_OK);
   ComPtr<ITfFunctionProvider> provider;
-  ASSERT_EQ(manager->GetFunctionProvider(CLSID_Jianfan,&provider),S_OK);
+  HRESULT available = E_FAIL;
+  auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(5);
+  do {
+    while (PeekMessageW(&message,nullptr,0,0,PM_REMOVE)) { TranslateMessage(&message); DispatchMessageW(&message); }
+    available = manager->GetFunctionProvider(CLSID_Jianfan,&provider);
+    if (SUCCEEDED(available)) { break; }
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+  } while (std::chrono::steady_clock::now() < deadline);
+  ASSERT_EQ(available,S_OK);
   ASSERT_EQ(provider.As(&processor),S_OK);
   ASSERT_EQ(processor.As(&keys),S_OK);
   for (WCHAR key : std::wstring(L"SU3CL3")) {
