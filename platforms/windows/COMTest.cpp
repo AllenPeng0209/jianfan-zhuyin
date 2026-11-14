@@ -160,8 +160,8 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   EXPECT_TRUE(eaten);
   EXPECT_EQ(store->text,L"你好");
   EXPECT_EQ(store->ended,endedBeforeTyping + 1);
-  EXPECT_EQ(processor->Deactivate(),S_OK);
-  profiles->DeactivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS);
+  EXPECT_EQ(profiles->DeactivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS),S_OK);
+  EXPECT_EQ(profiles->ReleaseInputProcessor(CLSID_Jianfan,0),S_OK);
   provider.Reset(); profiles.Reset();
   manager->SetFocus(nullptr);
   manager->AssociateFocus(store->nativeWindow(),nullptr,&priorFocus);
