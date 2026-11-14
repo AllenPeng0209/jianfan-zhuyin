@@ -1,0 +1,11 @@
+*.txt text eol=lf
+*.py text eol=lf
+*.swift text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.mm text eol=lf
+*.strings text eol=lf
+*.ocd2 binary
+*.png binary
+*.ico binary
+*.icns binary

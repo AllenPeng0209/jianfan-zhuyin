@@ -18,3 +18,8 @@ commands = [
 ]
 for command in commands:
     subprocess.run([sys.executable, "-X", "utf8", "-m", *command], cwd=directory, check=True)
+
+# The engine's sorted-file header and binary search require LF on every OS.
+for name in ["data.txt", "data-raw.txt", "data-plain-bpmf.txt", "associated-phrases-v2.txt", "PhraseFreq.txt"]:
+    path = directory / name
+    path.write_bytes(path.read_bytes().replace(b"\r\n", b"\n"))
