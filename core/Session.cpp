@@ -23,8 +23,9 @@ using Phrases = McBopomofo::AssociatedPhrasesV2;
 
 std::shared_ptr<opencc::Converter> converter(const std::string& directory, const std::string& prefix) {
   auto load = [&](const std::string& name) {
+    auto path = (std::filesystem::u8path(directory) / name).u8string();
     return opencc::SerializableDict::NewFromFile<opencc::MarisaDict>(
-        (std::filesystem::u8path(directory) / name).string());
+        std::string(path.begin(), path.end()));
   };
   auto dict = std::make_shared<opencc::DictGroup>(std::list<opencc::DictPtr>{
       load(prefix + "Phrases.ocd2"), load(prefix + "Characters.ocd2")});

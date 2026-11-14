@@ -25,6 +25,7 @@ jobs:
       - run: cmake -S . -B build/Windows -A x64
       - run: cmake --build build/Windows --config Release --parallel 4
       - run: build/Windows/Release/JianfanCoreTest.exe
+      - run: build/Windows/platforms/windows/Release/WindowsCOMTest.exe
   macos:
     runs-on: xcode-27
     steps:

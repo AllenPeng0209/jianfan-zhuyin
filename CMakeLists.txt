@@ -31,3 +31,6 @@ target_compile_definitions(JianfanCoreTest PRIVATE JIANFAN_SOURCE_ROOT="${CMAKE_
 include(GoogleTest)
 gtest_discover_tests(JianfanCoreTest)
 endif()
+if(WIN32)
+    add_subdirectory(platforms/windows)
+endif()
