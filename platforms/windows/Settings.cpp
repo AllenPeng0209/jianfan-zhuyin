@@ -55,7 +55,7 @@ class SettingsWindow {
   int scale(int value) const { return MulDiv(value,static_cast<int>(GetDpiForWindow(window)),96); }
   HWND control(int id,const wchar_t* cls,const wchar_t* label,DWORD style = 0) {
     auto result = CreateWindowExW(cls == std::wstring(L"EDIT") ? WS_EX_CLIENTEDGE : 0,cls,label,
-      WS_CHILD | WS_VISIBLE | WS_TABSTOP | style,0,0,0,0,window,reinterpret_cast<HMENU>(static_cast<INT_PTR>(id)),gModule,nullptr);
+      WS_CHILD | WS_VISIBLE | (cls == std::wstring(L"STATIC") ? 0 : WS_TABSTOP) | style,0,0,0,0,window,reinterpret_cast<HMENU>(static_cast<INT_PTR>(id)),gModule,nullptr);
     SendMessageW(result,WM_SETFONT,reinterpret_cast<WPARAM>(font_),TRUE); return result;
   }
   HWND item(int id) const { return GetDlgItem(window,id); }
@@ -144,6 +144,10 @@ class SettingsWindow {
     if (!MoveFileExW(temporary.c_str(),path->c_str(),MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH)) { throw std::runtime_error("Cannot replace the dictionary backup."); }
   }
   LRESULT handle(UINT message,WPARAM wParam,LPARAM lParam) {
+    if (message == WM_CTLCOLORSTATIC || message == WM_CTLCOLORBTN) {
+      HDC dc = reinterpret_cast<HDC>(wParam); SetBkMode(dc,TRANSPARENT); SetTextColor(dc,GetSysColor(COLOR_WINDOWTEXT));
+      return reinterpret_cast<LRESULT>(GetSysColorBrush(COLOR_WINDOW));
+    }
     if (message == WM_CREATE) {
       updateFont();
       control(Search,L"EDIT",L"",ES_AUTOHSCROLL); SendMessageW(item(Search),EM_SETCUEBANNER,TRUE,reinterpret_cast<LPARAM>(L"搜尋詞語或注音"));

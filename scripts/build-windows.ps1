@@ -17,4 +17,9 @@ $iscc = if ($compiler) { $compiler.Source } else { "${env:ProgramFiles(x86)}\Inn
 if (-not (Test-Path $iscc)) { throw 'Install Inno Setup 6 from its official website to build the installer.' }
 & $iscc platforms/windows/Installer.iss
 if ($LASTEXITCODE -ne 0) { throw 'Installer compilation failed' }
-Get-ChildItem dist/JianfanZhuyin-*-windows-x64.exe | Get-FileHash -Algorithm SHA256 | Format-Table -AutoSize
+$checksums = Get-ChildItem dist/JianfanZhuyin-*-windows-x64.exe | ForEach-Object {
+    $hash = Get-FileHash $_.FullName -Algorithm SHA256
+    "{0}  {1}" -f $hash.Hash.ToLowerInvariant(), $_.Name
+}
+$checksums | Set-Content -Encoding utf8NoBOM dist/SHA256SUMS-Windows.txt
+$checksums
