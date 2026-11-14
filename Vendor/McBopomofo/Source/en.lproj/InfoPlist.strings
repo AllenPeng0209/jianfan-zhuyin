@@ -1,0 +1,6 @@
+CFBundleName = "简繁注音";
+CFBundleDisplayName = "简繁注音";
+NSHumanReadableCopyright = "Copyright © 2011-2026 Mengjuei Hsieh et al.\nAll Rights Reserved.";
+"com.local.inputmethod.JianfanZhuyin.Bopomofo" = "简繁注音";
+"com.local.inputmethod.JianfanZhuyin.PlainBopomofo" = "Plain Bopomofo";
+

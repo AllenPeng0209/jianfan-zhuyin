@@ -1,0 +1,32 @@
+name: Build and test
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  portable-core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: cmake -S . -B build/EngineTests -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build build/EngineTests --target McBopomofoLMLibTest --parallel 2
+      - run: build/EngineTests/Vendor/McBopomofo/Source/Engine/McBopomofoLMLibTest
+  macos:
+    runs-on: xcode-27
+    steps:
+      - uses: actions/checkout@v7
+      - run: xcodebuild -version
+      - run: swift test --package-path Vendor/McBopomofo/Packages/JianfanUserData --scratch-path build/UserDataTests
+      - run: bash scripts/test-macos.sh
+      - run: bash scripts/build-local.sh
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: macos-build-results
+          path: |
+            build/logs/*.log
+            dist/*.dmg
+            dist/SHA256SUMS.txt
+          retention-days: 14
