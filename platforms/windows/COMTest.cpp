@@ -86,7 +86,7 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   std::cout << "Profile description status: " << described << "\n";
   if (description) { SysFreeString(description); }
   EXPECT_EQ(described,S_OK);
-  Ptr<ITfCategoryMgr> categories;
+  ComPtr<ITfCategoryMgr> categories;
   ASSERT_EQ(CoCreateInstance(CLSID_TF_CategoryMgr,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&categories)),S_OK);
   const GUID* kinds[] = {&GUID_TFCAT_TIP_KEYBOARD,&GUID_TFCAT_TIP_SPEECH,&GUID_TFCAT_TIP_HANDWRITING};
   GUID category{};
