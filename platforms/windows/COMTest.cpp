@@ -5,6 +5,7 @@
 #include "gtest/gtest.h"
 #include "TestTextStore.h"
 #include "ProfileRegistration.h"
+#include <cstdio>
 
 namespace {
 struct Registration {
@@ -73,6 +74,9 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   MSG message;
   while (PeekMessageW(&message,nullptr,0,0,PM_REMOVE)) { TranslateMessage(&message); DispatchMessageW(&message); }
   ASSERT_EQ(LOWORD(GetKeyboardLayout(0)),JianfanLanguage);
+  TF_INPUTPROCESSORPROFILE profile{};
+  ASSERT_EQ(profiles->GetProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,&profile),S_OK);
+  std::cout << "Registered profile type: " << profile.dwProfileType << "; flags: " << profile.dwFlags << "\n";
   ASSERT_EQ(profiles->ActivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS | TF_IPPMF_ENABLEPROFILE),S_OK);
   ComPtr<ITfFunctionProvider> provider;
   ASSERT_EQ(manager->GetFunctionProvider(CLSID_Jianfan,&provider),S_OK);
@@ -121,4 +125,14 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   auto canUnload = reinterpret_cast<HRESULT (__stdcall *)()>(GetProcAddress(module,"DllCanUnloadNow"));
   ASSERT_NE(canUnload,nullptr);
   EXPECT_EQ(canUnload(),S_OK);
+}
+
+int WINAPI wWinMain(HINSTANCE,HINSTANCE,PWSTR,int) {
+  FILE* output = nullptr;
+  freopen_s(&output,"windows-com.log","w",stdout);
+  freopen_s(&output,"windows-com-error.log","w",stderr);
+  setvbuf(stdout,nullptr,_IONBF,0); setvbuf(stderr,nullptr,_IONBF,0);
+  int count = 1; char name[] = "WindowsCOMTest"; char* arguments[] = {name,nullptr};
+  testing::InitGoogleTest(&count,arguments);
+  return RUN_ALL_TESTS();
 }
