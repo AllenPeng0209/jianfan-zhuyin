@@ -12,7 +12,7 @@ class CandidateUI final : public ITfCandidateListUIElementBehavior,public IRawEl
   std::function<void()> abort;
   Ptr<ITfDocumentMgr> document;
   CandidateUI() = default;
-  ~CandidateUI() override { if (window_) { DestroyWindow(window_); } if (font_) { DeleteObject(font_); } }
+  ~CandidateUI() override { if (window_) { DestroyWindow(window_); } if (font_) { DeleteObject(font_); } UnregisterClassW(L"Jianfan_IME_Candidate_Window",gModule); }
   HRESULT __stdcall QueryInterface(REFIID iid,void** result) override;
   JF_LIFETIME
   HRESULT __stdcall GetDescription(BSTR* result) override;

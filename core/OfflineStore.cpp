@@ -280,8 +280,32 @@ std::vector<UserPhrase> OfflineStore::phrases() const {
   });
   return result;
 }
-bool OfflineStore::upsertPhrase(const UserPhrase& phrase, const std::function<bool(const std::string&)>& validateReading) {
-  return impl_->attempt([&] { if (!validPhrase(phrase,validateReading)) { throw std::runtime_error("Invalid phrase or reading."); } impl_->mergePhrases({phrase}); });
+bool OfflineStore::upsertPhrase(const UserPhrase& phrase, const std::function<bool(const std::string&)>& validateReading, const std::optional<UserPhrase>& original) {
+  return impl_->attempt([&] {
+    if (!validPhrase(phrase,validateReading)) { throw std::runtime_error("Invalid phrase or reading."); }
+    if (!original) { impl_->mergePhrases({phrase}); return; }
+    auto source = impl_->lines();
+    auto matches = [](const UserPhrase& a,const UserPhrase& b) { return a.phrase == b.phrase && a.reading == b.reading; };
+    bool found = false, exists = false;
+    for (const auto& line : source) {
+      auto row = Impl::phrase(line);
+      found = found || matches(row,*original);
+      exists = exists || (matches(row,phrase) && !matches(row,*original));
+    }
+    if (!found) { throw std::runtime_error("The word changed in another window. Reload the list."); }
+    bool inserted = false;
+    std::string output;
+    for (const auto& line : source) {
+      if (matches(Impl::phrase(line),*original)) {
+        if (!exists && !inserted) {
+          std::istringstream stream(line); std::string a,b,suffix;
+          stream >> a >> b; std::getline(stream,suffix);
+          output += phrase.phrase + " " + phrase.reading + suffix + "\n"; inserted = true;
+        }
+      } else { output += line + "\n"; }
+    }
+    atomicWrite(phrasesPath(),output);
+  });
 }
 bool OfflineStore::removePhrase(const UserPhrase& phrase) {
   return impl_->attempt([&] {

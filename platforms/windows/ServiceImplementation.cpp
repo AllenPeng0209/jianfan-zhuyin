@@ -68,7 +68,7 @@ HRESULT TextService::QueryInterface(REFIID iid,void** result) {
   else if (iid == IID_ITfThreadMgrEventSink) { *result = static_cast<ITfThreadMgrEventSink*>(this); }
   else if (iid == IID_ITfDisplayAttributeProvider) { *result = static_cast<ITfDisplayAttributeProvider*>(this); }
   else if (iid == IID_ITfFunctionProvider) { *result = static_cast<ITfFunctionProvider*>(this); }
-  else if (iid == IID_ITfFnConfigure) { *result = static_cast<ITfFnConfigure*>(this); }
+  else if (iid == IID_ITfFnConfigure || iid == IID_ITfFunction) { *result = static_cast<ITfFnConfigure*>(this); }
   else { return E_NOINTERFACE; } AddRef(); return S_OK;
 }
 HRESULT TextService::Activate(ITfThreadMgr* manager,TfClientId client) { return ActivateEx(manager,client,0); }
@@ -312,5 +312,6 @@ HRESULT TextService::EnumDisplayAttributeInfo(IEnumTfDisplayAttributeInfo** resu
 HRESULT TextService::GetDisplayAttributeInfo(REFGUID id,ITfDisplayAttributeInfo** result) { if (!result) { return E_POINTER; } *result = nullptr; if (id != GUID_JianfanDisplay) { return E_INVALIDARG; } *result = new DisplayAttribute(); return S_OK; }
 HRESULT TextService::GetType(GUID* result) { if (!result) { return E_POINTER; } *result = CLSID_Jianfan; return S_OK; }
 HRESULT TextService::GetDescription(BSTR* result) { if (!result) { return E_POINTER; } *result = SysAllocString(L"簡繁注音"); return *result ? S_OK : E_OUTOFMEMORY; }
+HRESULT TextService::GetDisplayName(BSTR* result) { return GetDescription(result); }
 HRESULT TextService::GetFunction(REFGUID id,REFIID iid,IUnknown** result) { if (!result) { return E_POINTER; } *result = nullptr; if (id != GUID_NULL || iid != IID_ITfFnConfigure) { return E_NOINTERFACE; } *result = static_cast<ITfFnConfigure*>(this); AddRef(); return S_OK; }
 HRESULT TextService::Show(HWND parent,LANGID,REFGUID) { return OpenSettings(parent); }

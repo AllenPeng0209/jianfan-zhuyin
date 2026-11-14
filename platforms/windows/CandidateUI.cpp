@@ -87,7 +87,7 @@ void CandidateUI::position(HWND owner,RECT caret) {
   MONITORINFO monitor{sizeof(monitor)}; GetMonitorInfoW(MonitorFromRect(&caret,MONITOR_DEFAULTTONEAREST),&monitor);
   int x = std::clamp(caret.left,monitor.rcWork.left,std::max(monitor.rcWork.left,monitor.rcWork.right - width));
   int y = caret.bottom + height <= monitor.rcWork.bottom ? caret.bottom : caret.top - height;
-  y = std::max(y,monitor.rcWork.top);
+  y = std::max(y,static_cast<int>(monitor.rcWork.top));
   SetWindowPos(window_,HWND_TOPMOST,x,y,width,height,SWP_NOACTIVATE);
   refresh();
 }
@@ -101,6 +101,7 @@ LRESULT CALLBACK CandidateUI::windowProc(HWND window,UINT message,WPARAM wParam,
   auto self = reinterpret_cast<CandidateUI*>(GetWindowLongPtrW(window,GWLP_USERDATA));
   if (message == WM_NCCREATE) { self = static_cast<CandidateUI*>(reinterpret_cast<CREATESTRUCTW*>(lParam)->lpCreateParams); SetWindowLongPtrW(window,GWLP_USERDATA,reinterpret_cast<LONG_PTR>(self)); }
   if (!self) { return DefWindowProcW(window,message,wParam,lParam); }
+  if (message == WM_NCDESTROY) { self->window_ = nullptr; SetWindowLongPtrW(window,GWLP_USERDATA,0); return DefWindowProcW(window,message,wParam,lParam); }
   if (message == WM_MOUSEACTIVATE) { return MA_NOACTIVATE; }
   if (message == WM_GETOBJECT && static_cast<LONG>(lParam) == UiaRootObjectId) { return UiaReturnRawElementProvider(window,wParam,lParam,static_cast<IRawElementProviderSimple*>(self)); }
   if (message == WM_DPICHANGED) { self->updateFont(); auto rect = reinterpret_cast<RECT*>(lParam); SetWindowPos(window,nullptr,rect->left,rect->top,rect->right-rect->left,rect->bottom-rect->top,SWP_NOACTIVATE | SWP_NOZORDER); return 0; }

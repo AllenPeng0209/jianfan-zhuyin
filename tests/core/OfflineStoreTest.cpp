@@ -76,3 +76,17 @@ TEST_F(StoreTest, FutureSchemasRemainUntouchedAndCorruptionRecoversBackup) {
   std::ifstream file(path); std::string data((std::istreambuf_iterator<char>(file)), {});
   EXPECT_EQ(data, R"({"schemaVersion":99})");
 }
+
+TEST_F(StoreTest, EditingAWordPreservesCommentsAndRejectsAStaleOriginal) {
+  Jianfan::OfflineStore store(directory);
+  { std::ofstream file(store.phrasesPath()); file << "# custom note\n星禾 ㄒㄧㄥ-ㄏㄜˊ -2\n"; }
+  Jianfan::UserPhrase original{"星禾","ㄒㄧㄥ-ㄏㄜˊ"};
+  ASSERT_TRUE(store.upsertPhrase({"星和","ㄋㄧˇ-ㄏㄠˇ"},reading,original));
+  auto rows = store.phrases();
+  ASSERT_EQ(rows.size(),1);
+  EXPECT_EQ(rows[0].phrase,"星和");
+  std::ifstream file(store.phrasesPath()); std::string text((std::istreambuf_iterator<char>(file)),{});
+  EXPECT_EQ(text,"# custom note\n星和 ㄋㄧˇ-ㄏㄠˇ -2\n");
+  EXPECT_FALSE(store.upsertPhrase({"其他","ㄋㄧˇ-ㄏㄠˇ"},reading,original));
+  EXPECT_EQ(store.phrases().size(),1);
+}

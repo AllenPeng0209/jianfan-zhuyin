@@ -31,6 +31,7 @@ class TextService final : public ITfTextInputProcessorEx,public ITfKeyEventSink,
   HRESULT __stdcall GetType(GUID*) override;
   HRESULT __stdcall GetDescription(BSTR*) override;
   HRESULT __stdcall GetFunction(REFGUID,REFIID,IUnknown**) override;
+  HRESULT __stdcall GetDisplayName(BSTR*) override;
   HRESULT __stdcall Show(HWND,LANGID,REFGUID) override;
  private:
   Ptr<ITfThreadMgr> manager_;
