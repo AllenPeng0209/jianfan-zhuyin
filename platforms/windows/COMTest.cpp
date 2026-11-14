@@ -125,6 +125,8 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   ASSERT_EQ(available,S_OK);
   ASSERT_EQ(provider.As(&processor),S_OK);
   ASSERT_EQ(processor.As(&keys),S_OK);
+  ULONG endedBeforeTyping = store->ended;
+  EXPECT_TRUE(store->text.empty());
   for (WCHAR key : std::wstring(L"SU3CL3")) {
     BOOL eaten = FALSE;
     ASSERT_EQ(keys->OnTestKeyDown(context.Get(),key,0,&eaten),S_OK);
@@ -133,7 +135,7 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
     ASSERT_TRUE(eaten);
   }
   EXPECT_EQ(store->text,L"你好");
-  EXPECT_EQ(store->ended,0u);
+  EXPECT_EQ(store->ended,endedBeforeTyping);
   BOOL opened = FALSE;
   ASSERT_EQ(keys->OnKeyDown(context.Get(),VK_DOWN,0,&opened),S_OK);
   ASSERT_TRUE(opened);
@@ -156,7 +158,7 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   ASSERT_EQ(keys->OnKeyDown(context.Get(),VK_RETURN,0,&eaten),S_OK);
   EXPECT_TRUE(eaten);
   EXPECT_EQ(store->text,L"你好");
-  EXPECT_EQ(store->ended,1u);
+  EXPECT_EQ(store->ended,endedBeforeTyping + 1);
   EXPECT_EQ(processor->Deactivate(),S_OK);
   profiles->DeactivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS);
   provider.Reset(); profiles.Reset();
@@ -164,11 +166,20 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   manager->AssociateFocus(store->nativeWindow(),nullptr,&priorFocus);
   document->Pop(TF_POPF_ALL);
   context.Reset(); document.Reset(); store.Reset();
+  priorFocus.Reset(); descriptionProvider.Reset(); categories.Reset();
   manager->Deactivate();
   routing.Reset(); manager.Reset(); keys.Reset(); display.Reset(); processor.Reset(); factory.Reset();
   auto canUnload = reinterpret_cast<HRESULT (__stdcall *)()>(GetProcAddress(module,"DllCanUnloadNow"));
   ASSERT_NE(canUnload,nullptr);
-  EXPECT_EQ(canUnload(),S_OK);
+  HRESULT unloadable = S_FALSE;
+  auto unloadDeadline = std::chrono::steady_clock::now() + std::chrono::seconds(3);
+  do {
+    while (PeekMessageW(&message,nullptr,0,0,PM_REMOVE)) { TranslateMessage(&message); DispatchMessageW(&message); }
+    CoFreeUnusedLibraries(); unloadable = canUnload();
+    if (unloadable == S_OK) { break; }
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+  } while (std::chrono::steady_clock::now() < unloadDeadline);
+  EXPECT_EQ(unloadable,S_OK);
 }
 
 int WINAPI wWinMain(HINSTANCE,HINSTANCE,PWSTR,int) {
