@@ -60,7 +60,7 @@ HRESULT registerProfile(bool install) {
 }
 
 BOOL WINAPI DllMain(HINSTANCE instance,DWORD reason,LPVOID) {
-  if (reason == DLL_PROCESS_ATTACH) { gModule = instance; DisableThreadLibraryCalls(instance); }
+  if (reason == DLL_PROCESS_ATTACH) { gModule = instance; }
   return TRUE;
 }
 STDAPI DllGetClassObject(REFCLSID id,REFIID iid,void** result) {
