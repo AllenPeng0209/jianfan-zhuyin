@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <commctrl.h>
+#include <objidl.h>
 #include <gdiplus.h>
 #include <chrono>
 #include <filesystem>

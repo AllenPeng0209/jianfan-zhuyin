@@ -11,7 +11,10 @@ class TestTextStore final : public ITextStoreACP, public ITfContextOwnerComposit
  public:
   std::wstring text;
   ULONG ended = 0;
-  TestTextStore() { window_ = CreateWindowExW(0,L"STATIC",L"Jianfan test document",WS_OVERLAPPED,0,0,500,400,nullptr,nullptr,GetModuleHandleW(nullptr),nullptr); }
+  TestTextStore() {
+    window_ = CreateWindowExW(0,L"STATIC",L"Jianfan test document",WS_OVERLAPPEDWINDOW | WS_VISIBLE,0,0,500,400,nullptr,nullptr,GetModuleHandleW(nullptr),nullptr);
+    SetForegroundWindow(window_); SetFocus(window_);
+  }
   ~TestTextStore() { if (window_) { DestroyWindow(window_); } }
   HRESULT __stdcall QueryInterface(REFIID iid,void** result) override {
     if (!result) { return E_POINTER; } *result = nullptr;

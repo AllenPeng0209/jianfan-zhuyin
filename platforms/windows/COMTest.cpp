@@ -10,7 +10,15 @@ namespace {
 struct Registration {
   HMODULE module = nullptr;
   HRESULT (__stdcall *unregister)() = nullptr;
-  ~Registration() { if (unregister) { SetUserProfileEnabled(false); unregister(); } if (module) { FreeLibrary(module); } }
+  LANGID originalLanguage = LOWORD(GetKeyboardLayout(0));
+  ~Registration() {
+    if (unregister) {
+      Microsoft::WRL::ComPtr<ITfInputProcessorProfiles> profiles;
+      if (SUCCEEDED(CoCreateInstance(CLSID_TF_InputProcessorProfiles,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&profiles)))) { profiles->ChangeCurrentLanguage(originalLanguage); }
+      SetUserProfileEnabled(false); unregister();
+    }
+    if (module) { FreeLibrary(module); }
+  }
 };
 struct Apartment { ~Apartment() { CoUninitialize(); } };
 }
@@ -27,6 +35,8 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   ASSERT_NE(install,nullptr); ASSERT_NE(registration.unregister,nullptr);
   ASSERT_EQ(install(),S_OK);
   ASSERT_TRUE(SetUserProfileEnabled(true));
+  DWORD session = 0; ProcessIdToSessionId(GetCurrentProcessId(),&session);
+  std::cout << "Windows test session: " << session << "\n";
   auto factoryFunction = reinterpret_cast<HRESULT (__stdcall *)(REFCLSID,REFIID,void**)>(GetProcAddress(module,"DllGetClassObject"));
   ASSERT_NE(factoryFunction,nullptr);
   ComPtr<IClassFactory> factory;
@@ -57,6 +67,9 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   std::cout << "Current keyboard language: " << LOWORD(GetKeyboardLayout(0)) << "; test language: " << JianfanLanguage << "\n";
   ComPtr<ITfInputProcessorProfileMgr> profiles;
   ASSERT_EQ(CoCreateInstance(CLSID_TF_InputProcessorProfiles,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&profiles)),S_OK);
+  ComPtr<ITfInputProcessorProfiles> languages;
+  ASSERT_EQ(profiles.As(&languages),S_OK);
+  ASSERT_EQ(languages->ChangeCurrentLanguage(JianfanLanguage),S_OK);
   ASSERT_EQ(profiles->ActivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS | TF_IPPMF_ENABLEPROFILE),S_OK);
   ComPtr<ITfFunctionProvider> provider;
   ASSERT_EQ(manager->GetFunctionProvider(CLSID_Jianfan,&provider),S_OK);
