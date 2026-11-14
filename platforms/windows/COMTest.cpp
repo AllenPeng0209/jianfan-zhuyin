@@ -62,6 +62,8 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   TfEditCookie cookie;
   ASSERT_EQ(document->CreateContext(client,0,static_cast<ITextStoreACP*>(store.Get()),&context,&cookie),S_OK);
   ASSERT_EQ(document->Push(context.Get()),S_OK);
+  ComPtr<ITfDocumentMgr> priorFocus;
+  ASSERT_EQ(manager->AssociateFocus(store->nativeWindow(),document.Get(),&priorFocus),S_OK);
   ASSERT_EQ(manager->SetFocus(document.Get()),S_OK);
   ComPtr<ITfTextInputProcessorEx> registeredService;
   ASSERT_EQ(CoCreateInstance(CLSID_Jianfan,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&registeredService)),S_OK);
@@ -76,6 +78,8 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   MSG message;
   while (PeekMessageW(&message,nullptr,0,0,PM_REMOVE)) { TranslateMessage(&message); DispatchMessageW(&message); }
   ASSERT_EQ(LOWORD(GetKeyboardLayout(0)),JianfanLanguage);
+  SetFocus(store->nativeWindow());
+  ASSERT_EQ(manager->SetFocus(document.Get()),S_OK);
   TF_INPUTPROCESSORPROFILE profile{};
   ComPtr<ITfInputProcessorProfiles> descriptionProvider;
   ASSERT_EQ(profiles.As(&descriptionProvider),S_OK);
@@ -95,14 +99,25 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   HRESULT categorized = categories->FindClosestCategory(CLSID_Jianfan,&category,kinds,3);
   std::cout << "Category query: " << categorized << "; keyboard category: " << (category == GUID_TFCAT_TIP_KEYBOARD) << "\n";
   EXPECT_EQ(categorized,S_OK); EXPECT_EQ(category,GUID_TFCAT_TIP_KEYBOARD);
-  EXPECT_EQ(profiles->GetProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,&profile),S_OK);
+  HRESULT profileReady = E_FAIL;
+  auto profileDeadline = std::chrono::steady_clock::now() + std::chrono::seconds(5);
+  do {
+    while (PeekMessageW(&message,nullptr,0,0,PM_REMOVE)) { TranslateMessage(&message); DispatchMessageW(&message); }
+    profileReady = profiles->GetProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,&profile);
+    if (SUCCEEDED(profileReady)) { break; }
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+  } while (std::chrono::steady_clock::now() < profileDeadline);
+  ASSERT_EQ(profileReady,S_OK);
   std::cout << "Registered profile type: " << profile.dwProfileType << "; flags: " << profile.dwFlags << "\n";
   ASSERT_EQ(profiles->ActivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS | TF_IPPMF_ENABLEPROFILE),S_OK);
   ComPtr<ITfFunctionProvider> provider;
+  ComPtr<ITfKeystrokeMgr> routing;
+  ASSERT_EQ(manager.As(&routing),S_OK);
   HRESULT available = E_FAIL;
   auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(5);
   do {
     while (PeekMessageW(&message,nullptr,0,0,PM_REMOVE)) { TranslateMessage(&message); DispatchMessageW(&message); }
+    BOOL pendingKey = FALSE; routing->TestKeyDown('S',0,&pendingKey);
     available = manager->GetFunctionProvider(CLSID_Jianfan,&provider);
     if (SUCCEEDED(available)) { break; }
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -146,10 +161,11 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   profiles->DeactivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS);
   provider.Reset(); profiles.Reset();
   manager->SetFocus(nullptr);
+  manager->AssociateFocus(store->nativeWindow(),nullptr,&priorFocus);
   document->Pop(TF_POPF_ALL);
   context.Reset(); document.Reset(); store.Reset();
   manager->Deactivate();
-  manager.Reset(); keys.Reset(); display.Reset(); processor.Reset(); factory.Reset();
+  routing.Reset(); manager.Reset(); keys.Reset(); display.Reset(); processor.Reset(); factory.Reset();
   auto canUnload = reinterpret_cast<HRESULT (__stdcall *)()>(GetProcAddress(module,"DllCanUnloadNow"));
   ASSERT_NE(canUnload,nullptr);
   EXPECT_EQ(canUnload(),S_OK);

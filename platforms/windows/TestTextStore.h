@@ -11,6 +11,7 @@ class TestTextStore final : public ITextStoreACP, public ITfContextOwnerComposit
  public:
   std::wstring text;
   ULONG ended = 0;
+  HWND nativeWindow() const { return window_; }
   TestTextStore() {
     WNDCLASSEXW cls{sizeof(cls)}; cls.lpfnWndProc = DefWindowProcW; cls.hInstance = GetModuleHandleW(nullptr);
     cls.lpszClassName = L"Jianfan.TSFTest.Document"; RegisterClassExW(&cls);
