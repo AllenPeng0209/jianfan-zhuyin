@@ -10,6 +10,7 @@ DEVELOPMENT_STATUS.md
 *.cer
 *.keychain-db
 .DS_Store
+platforms/ios/Dictionaries/
 **/.DS_Store
 **/.build/
 **/xcuserdata/

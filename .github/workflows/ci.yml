@@ -36,6 +36,7 @@ jobs:
       - run: swift test --package-path Vendor/McBopomofo/Packages/JianfanUserData --scratch-path build/UserDataTests
       - run: bash scripts/test-macos.sh
       - run: bash scripts/build-local.sh
+      - run: bash scripts/test-ios.sh
       - uses: actions/upload-artifact@v7
         if: always()
         with:

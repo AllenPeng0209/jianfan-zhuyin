@@ -1,0 +1,128 @@
+name: Jianfan
+options:
+  bundleIdPrefix: com.allenpeng.jianfan
+  deploymentTarget:
+    iOS: '16.0'
+  createIntermediateGroups: true
+  developmentLanguage: zh-Hant
+  knownRegions: [en, zh-Hant, zh-Hans, Base]
+settings:
+  base:
+    SWIFT_VERSION: '5.0'
+    CLANG_CXX_LANGUAGE_STANDARD: c++20
+    CLANG_ENABLE_MODULES: YES
+    CODE_SIGN_STYLE: Automatic
+    CURRENT_PROJECT_VERSION: 4
+    MARKETING_VERSION: 0.3.0
+    TARGETED_DEVICE_FAMILY: '1,2'
+    SUPPORTS_MACCATALYST: NO
+    HEADER_SEARCH_PATHS:
+      - $(inherited)
+      - $(SRCROOT)/../../core
+      - $(SRCROOT)/../../Vendor/McBopomofo/Source/Engine
+      - $(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/src
+      - $(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/deps/darts-clone
+      - $(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/deps/marisa-0.2.6/include
+      - $(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/deps/marisa-0.2.6/lib
+    GCC_PREPROCESSOR_DEFINITIONS: ['$(inherited)', Opencc_BUILT_AS_STATIC, ENABLE_DARTS]
+packages:
+  JianfanUserData:
+    path: ../../Vendor/McBopomofo/Packages/JianfanUserData
+targetTemplates:
+  Core:
+    sources:
+      - path: Shared
+      - path: ../../core/Session.cpp
+      - path: ../../Vendor/McBopomofo/Source/Engine
+        excludes: ['*Test.cpp', EngineProfile.cpp, '*Benchmark.cpp', '**/*Benchmark.cpp', CMakeLists.txt, '**/*Test.cpp', '**/*test.cpp', '**/CMakeLists.txt']
+      - path: ../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/src
+        excludes: ['*Test.cpp', '*Test*.hpp', Config.cpp, Config.hpp, SimpleConverter.cpp, SimpleConverter.hpp, PhraseExtract.cpp, PhraseExtract.hpp, py_opencc.cpp, opencc.h, tools, benchmark, CMakeLists.txt, README.md, Doxyfile, unittest]
+      - path: ../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/deps/marisa-0.2.6/lib
+        includes: ['**/*.cc', '**/*.h']
+      - path: Dictionaries
+        type: folder
+      - path: PrivacyInfo.xcprivacy
+    dependencies:
+      - package: JianfanUserData
+    settings:
+      base:
+        SWIFT_OBJC_BRIDGING_HEADER: Shared/Bridging.h
+targets:
+  Jianfan:
+    type: application
+    platform: iOS
+    templates: [Core]
+    sources: [App]
+    dependencies:
+      - target: JianfanKeyboard
+        embed: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.allenpeng.jianfan.zhuyin
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: 簡繁注音
+        LSApplicationCategoryType: public.app-category.utilities
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UIRequiresFullScreen: false
+        LSSupportsOpeningDocumentsInPlace: true
+    entitlements:
+      path: App/Jianfan.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.allenpeng.jianfan.zhuyin]
+  JianfanKeyboard:
+    type: app-extension
+    platform: iOS
+    templates: [Core]
+    sources: [Keyboard]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.allenpeng.jianfan.zhuyin.keyboard
+        APPLICATION_EXTENSION_API_ONLY: YES
+        SKIP_INSTALL: YES
+    info:
+      path: Keyboard/Info.plist
+      properties:
+        CFBundleDisplayName: 簡繁注音
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.keyboard-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).KeyboardViewController
+          NSExtensionAttributes:
+            IsASCIICapable: true
+            PrefersRightToLeft: false
+            PrimaryLanguage: zh-Hant
+            RequestsOpenAccess: false
+    entitlements:
+      path: Keyboard/JianfanKeyboard.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.allenpeng.jianfan.zhuyin]
+  JianfanTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Tests]
+    dependencies: [{target: Jianfan}]
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_OBJC_BRIDGING_HEADER: Shared/Bridging.h
+  JianfanUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [UITests]
+    dependencies: [{target: Jianfan}]
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  Jianfan:
+    build:
+      targets:
+        Jianfan: all
+    test:
+      targets: [JianfanTests, JianfanUITests]
