@@ -70,6 +70,8 @@ targets:
           UIApplicationSupportsMultipleScenes: false
           UISceneConfigurations: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        ITSAppUsesNonExemptEncryption: false
         UIRequiresFullScreen: false
         LSSupportsOpeningDocumentsInPlace: true
     entitlements:
@@ -119,6 +121,14 @@ targets:
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
+  JianfanSystemUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [SystemUITests]
+    dependencies: [{target: Jianfan}]
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
 schemes:
   Jianfan:
     build:
@@ -126,3 +136,9 @@ schemes:
         Jianfan: all
     test:
       targets: [JianfanTests, JianfanUITests]
+  JianfanSystemIntegration:
+    build:
+      targets:
+        Jianfan: all
+    test:
+      targets: [JianfanSystemUITests]

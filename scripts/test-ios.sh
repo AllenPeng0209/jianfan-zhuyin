@@ -18,8 +18,9 @@ PY
     unzip -qo build/tools/xcodegen.zip -d build/tools
 fi
 "$generator" generate --spec platforms/ios/project.yml
-simulator="${JIANFAN_IOS_SIMULATOR:-$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); phones=[v["udid"] for k,vs in d["devices"].items() if "iOS" in k for v in vs if "iPhone" in v["name"]]; assert phones, "Install an iOS simulator runtime in Xcode"; print(phones[-1])')}"
+simulator="${JIANFAN_IOS_SIMULATOR:-$(python3 scripts/select-ios-simulator.py)}"
 xcodebuild -project platforms/ios/Jianfan.xcodeproj -scheme Jianfan -configuration Debug \
     -destination "platform=iOS Simulator,id=$simulator" -derivedDataPath build/iOSDerived \
+    -parallel-testing-enabled NO -test-timeouts-enabled YES -default-test-execution-time-allowance 90 \
     CODE_SIGN_IDENTITY=- CODE_SIGNING_ALLOWED=YES test > build/logs/ios-tests.log 2>&1
 tail -24 build/logs/ios-tests.log

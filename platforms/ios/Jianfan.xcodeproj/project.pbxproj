@@ -36,6 +36,7 @@
 		35EE25276C513AAF93DED5D4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AF6A3BE6CD7CAE45639D8F36 /* README.md */; };
 		377E3EF614D67B68207F5504 /* tail.cc in Sources */ = {isa = PBXBuildFile; fileRef = BF01718ACABC7441AB78CBEA /* tail.cc */; };
 		38E619D4298DE53428B51CFD /* Mandarin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68EC724E57A3147BBD38A13A /* Mandarin.cpp */; };
+		38EEC3098B629430D844316E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24644FB466CC5AD6DACECB7A /* InfoPlist.strings */; };
 		3A59E28330BA1C5A93B43C29 /* Converter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BE6FFC34C77ED9ECA87DF1C /* Converter.cpp */; };
 		3DC5ADB545AC31C2DDDA47F3 /* ParselessPhraseDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC93CA7EACC9355ECAA207 /* ParselessPhraseDB.cpp */; };
 		3E021F721200AC43CBCA9BC3 /* UserOverrideModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA15E34A049D4D97B03E52F0 /* UserOverrideModel.cpp */; };
@@ -83,6 +84,7 @@
 		AF566A88838359DBE2B7B950 /* PhraseReplacementMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFCF9C94ECB5E5B59076A880 /* PhraseReplacementMap.cpp */; };
 		B248C4C48245727741B326B3 /* Lexicon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11BCF97FBDE43338502AF5A6 /* Lexicon.cpp */; };
 		B61E389BF2E75DEB83531261 /* KeyboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265F935786CCFFDF0F7D69EA /* KeyboardModel.swift */; };
+		B7A7B31DC5DEBCA204BFFDC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24644FB466CC5AD6DACECB7A /* InfoPlist.strings */; };
 		BE8D5D691115F70643B32934 /* ParselessPhraseDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC93CA7EACC9355ECAA207 /* ParselessPhraseDB.cpp */; };
 		BFC34BD0A6491D965F6D2AF1 /* MemoryMappedFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 022B74355D66CC6D7A7428BB /* MemoryMappedFile.cpp */; };
 		C01F52CCBD5E53A83EEFAF2A /* Segmentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A2197B3F9859055CA01CA5C0 /* Segmentation.cpp */; };
@@ -104,6 +106,7 @@
 		E01CF7E76FD5FDA206AFE33F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 5F4BA7BB0D3BC7AAA6BDE04D /* PrivacyInfo.xcprivacy */; };
 		E2470D0FB3C283D7A0266218 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 5F4BA7BB0D3BC7AAA6BDE04D /* PrivacyInfo.xcprivacy */; };
 		E3399D0FEF598F38D7A6A55F /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548F8677517B2C1B099ECA3C /* KeyboardViewController.swift */; };
+		E4839401590B62DBE40EB9D7 /* SystemKeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82780FB3BF3AA2B4F8CF55FA /* SystemKeyboardTests.swift */; };
 		EED3E9FE4433E9AAE69CC577 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AF6A3BE6CD7CAE45639D8F36 /* README.md */; };
 		F594A0E5EF6227A3148FAFDC /* KeyboardSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A952655889C4D1F43AABF2E /* KeyboardSettings.swift */; };
 		F62F65D82283FD7055C0172B /* JianfanKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6719B7BEA6E63228607B3543 /* JianfanKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -137,6 +140,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = B7A7F842D72B22A33EB9EBD5;
 			remoteInfo = JianfanKeyboard;
+		};
+		71C970DC9A8CAF869073E6E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF4E9343EB6AF66DCCBD173B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81E6C3281218864ABC479BA8;
+			remoteInfo = Jianfan;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -188,6 +198,7 @@
 		4467BDA76EDDB9DCDA7BC3D7 /* MaxMatchSegmentation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MaxMatchSegmentation.hpp; sourceTree = "<group>"; };
 		47E91066E0B8C8D481152DAA /* JianfanTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = JianfanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47E9B89F6AAD2BE08FD983CB /* JianfanUserData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = JianfanUserData; path = ../../Vendor/McBopomofo/Packages/JianfanUserData; sourceTree = SOURCE_ROOT; };
+		4AB9700F63DE037BBE857ADD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4BE15774B6A3671E9D10CD75 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4BE6FFC34C77ED9ECA87DF1C /* Converter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Converter.cpp; sourceTree = "<group>"; };
 		4C988E101281CADDBB78C9F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -204,12 +215,14 @@
 		6049D415038571F5322C67E1 /* reading_grid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reading_grid.h; sourceTree = "<group>"; };
 		629A810F95D3083A60DC6C94 /* Export.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Export.hpp; sourceTree = "<group>"; };
 		6536C92A58B097C4A49504C5 /* UTF8StringSlice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UTF8StringSlice.hpp; sourceTree = "<group>"; };
+		66AD06AAFE33B08D9E86AE7E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		6719B7BEA6E63228607B3543 /* JianfanKeyboard.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = JianfanKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		68EC724E57A3147BBD38A13A /* Mandarin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mandarin.cpp; sourceTree = "<group>"; };
 		69BA16D3FECB1107463BF7D1 /* keyset.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = keyset.cc; sourceTree = "<group>"; };
 		6AF14778361A7E90242490ED /* DictConverter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DictConverter.cpp; sourceTree = "<group>"; };
 		6AF7BF2748C363011A79C938 /* Optional.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Optional.hpp; sourceTree = "<group>"; };
 		6CFE7766A04998763BDC702F /* key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key.h; sourceTree = "<group>"; };
+		6E0BC981850EA953D64AB555 /* JianfanSystemUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = JianfanSystemUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F48DD66632CBF0CCB431936 /* ParselessLM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ParselessLM.cpp; sourceTree = "<group>"; };
 		70EEF34DA868E2521C10EBD5 /* McBopomofoLM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = McBopomofoLM.cpp; sourceTree = "<group>"; };
 		774B99F7C16E708D21174D71 /* DartsDict.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DartsDict.cpp; sourceTree = "<group>"; };
@@ -221,6 +234,7 @@
 		7FB9EF4F815CCC0070601BAE /* AssociatedPhrasesV2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AssociatedPhrasesV2.cpp; sourceTree = "<group>"; };
 		80FAE7D55B5710F45D941096 /* ConversionChain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConversionChain.hpp; sourceTree = "<group>"; };
 		81B23154BF05EBA9665FE998 /* Lexicon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Lexicon.hpp; sourceTree = "<group>"; };
+		82780FB3BF3AA2B4F8CF55FA /* SystemKeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemKeyboardTests.swift; sourceTree = "<group>"; };
 		847C29B8CE322EE7CF652B38 /* UTF8Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UTF8Util.cpp; sourceTree = "<group>"; };
 		850A13543C176D2FDC1D74B2 /* language_model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = language_model.h; sourceTree = "<group>"; };
 		8512BB443AD6424E9CC0006D /* Dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dictionaries; sourceTree = SOURCE_ROOT; };
@@ -241,6 +255,7 @@
 		9A952655889C4D1F43AABF2E /* KeyboardSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettings.swift; sourceTree = "<group>"; };
 		9AF0C3EEAD3321ACBE0EA487 /* EngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTests.swift; sourceTree = "<group>"; };
 		A2197B3F9859055CA01CA5C0 /* Segmentation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Segmentation.cpp; sourceTree = "<group>"; };
+		A2269D347B1A740A9958871D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A26C396CCF60573D196441C2 /* DartsDict.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DartsDict.hpp; sourceTree = "<group>"; };
 		A3DD37A159BB3E0F66910564 /* Common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Common.hpp; sourceTree = "<group>"; };
 		A40F970664CBA5518F402FB9 /* writer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
@@ -440,6 +455,7 @@
 		4F7E75BDB3AD90EBDD8E204C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				24644FB466CC5AD6DACECB7A /* InfoPlist.strings */,
 				B946B4DCCA14B165FDF371FD /* Localizable.strings */,
 			);
 			path = Resources;
@@ -464,6 +480,14 @@
 				189CE507F5965CFA51A8AFF7 /* marisa */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		8363E811952D144646CDEA36 /* SystemUITests */ = {
+			isa = PBXGroup;
+			children = (
+				82780FB3BF3AA2B4F8CF55FA /* SystemKeyboardTests.swift */,
+			);
+			path = SystemUITests;
 			sourceTree = "<group>";
 		};
 		910255EE06A3BBDFE82B498E /* vector */ = {
@@ -510,6 +534,7 @@
 			children = (
 				5C4A1BC86C1F3FE4EBB13837 /* Jianfan.app */,
 				6719B7BEA6E63228607B3543 /* JianfanKeyboard.appex */,
+				6E0BC981850EA953D64AB555 /* JianfanSystemUITests.xctest */,
 				47E91066E0B8C8D481152DAA /* JianfanTests.xctest */,
 				5AC4AA2AFA57A419FFA313EB /* JianfanUITests.xctest */,
 			);
@@ -674,6 +699,7 @@
 				93146D9FB75B8932CC8B71A7 /* Keyboard */,
 				137E2858747111A35E69E2B0 /* Packages */,
 				29E431AC0228C94D1FEDD7B3 /* Shared */,
+				8363E811952D144646CDEA36 /* SystemUITests */,
 				1E92B4A9D75551F56D3A5E0A /* Tests */,
 				EAACB39F6AAFF4E3556EB66D /* UITests */,
 				A74A04C066BA593304232D11 /* Products */,
@@ -699,6 +725,24 @@
 			);
 			productName = JianfanUITests;
 			productReference = 5AC4AA2AFA57A419FFA313EB /* JianfanUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		1C70A6B2ACE298773284775F /* JianfanSystemUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12A03F391EF46BF69826B235 /* Build configuration list for PBXNativeTarget "JianfanSystemUITests" */;
+			buildPhases = (
+				6390805665C817FE66786785 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				79F1224649A135A494359EA2 /* PBXTargetDependency */,
+			);
+			name = JianfanSystemUITests;
+			packageProductDependencies = (
+			);
+			productName = JianfanSystemUITests;
+			productReference = 6E0BC981850EA953D64AB555 /* JianfanSystemUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		81E6C3281218864ABC479BA8 /* Jianfan */ = {
@@ -774,6 +818,10 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 81E6C3281218864ABC479BA8;
 					};
+					1C70A6B2ACE298773284775F = {
+						ProvisioningStyle = Automatic;
+						TestTargetID = 81E6C3281218864ABC479BA8;
+					};
 					81E6C3281218864ABC479BA8 = {
 						ProvisioningStyle = Automatic;
 					};
@@ -808,6 +856,7 @@
 				B7A7F842D72B22A33EB9EBD5 /* JianfanKeyboard */,
 				FF8A09C3AA0888C138E40827 /* JianfanTests */,
 				1182DD65CC2577A6A9D3A7EF /* JianfanUITests */,
+				1C70A6B2ACE298773284775F /* JianfanSystemUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -818,6 +867,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C234F9091831EFFB24F5914F /* Dictionaries in Resources */,
+				B7A7B31DC5DEBCA204BFFDC9 /* InfoPlist.strings in Resources */,
 				484263236C5B0BA4A6BEE75B /* Localizable.strings in Resources */,
 				E2470D0FB3C283D7A0266218 /* PrivacyInfo.xcprivacy in Resources */,
 				35EE25276C513AAF93DED5D4 /* README.md in Resources */,
@@ -830,6 +880,7 @@
 			files = (
 				3145A70DDC55A3D6CF06AF8A /* Assets.xcassets in Resources */,
 				62AE9DDB61E247D8187ACBD7 /* Dictionaries in Resources */,
+				38EEC3098B629430D844316E /* InfoPlist.strings in Resources */,
 				2CA99FCA488453E58DEA6DF7 /* Localizable.strings in Resources */,
 				E01CF7E76FD5FDA206AFE33F /* PrivacyInfo.xcprivacy in Resources */,
 				EED3E9FE4433E9AAE69CC577 /* README.md in Resources */,
@@ -896,6 +947,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5CC475BCBF8A10D651E444B /* TypingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6390805665C817FE66786785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4839401590B62DBE40EB9D7 /* SystemKeyboardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -975,6 +1034,11 @@
 			target = 81E6C3281218864ABC479BA8 /* Jianfan */;
 			targetProxy = 2FB91779BDE8CBAEC50A424D /* PBXContainerItemProxy */;
 		};
+		79F1224649A135A494359EA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81E6C3281218864ABC479BA8 /* Jianfan */;
+			targetProxy = 71C970DC9A8CAF869073E6E2 /* PBXContainerItemProxy */;
+		};
 		CEE2CBD58E375192D7AB5D90 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 81E6C3281218864ABC479BA8 /* Jianfan */;
@@ -983,6 +1047,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		24644FB466CC5AD6DACECB7A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4AB9700F63DE037BBE857ADD /* en */,
+				66AD06AAFE33B08D9E86AE7E /* zh-Hans */,
+				A2269D347B1A740A9958871D /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B946B4DCCA14B165FDF371FD /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -996,6 +1070,23 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		07E6AFD1C1E1ADD956FC3A5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.JianfanSystemUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jianfan;
+			};
+			name = Release;
+		};
 		080ABD39706E8C33204DEB00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1239,6 +1330,23 @@
 			};
 			name = Release;
 		};
+		9D2EEC225BE3E19CF36032AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.JianfanSystemUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jianfan;
+			};
+			name = Debug;
+		};
 		CA8968153E7BFE497E9A25BF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1301,6 +1409,15 @@
 			buildConfigurations = (
 				0C5BC8C2063F86B6567B5C67 /* Debug */,
 				DA62A7BA466E736BC5F8498F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		12A03F391EF46BF69826B235 /* Build configuration list for PBXNativeTarget "JianfanSystemUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D2EEC225BE3E19CF36032AE /* Debug */,
+				07E6AFD1C1E1ADD956FC3A5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

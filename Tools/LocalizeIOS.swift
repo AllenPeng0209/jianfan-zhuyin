@@ -51,4 +51,6 @@ for language in ["zh-Hant","zh-Hans","en"] {
         rows.append(try quote(key) + " = " + quote(value) + ";")
     }
     try (rows.joined(separator: "\n") + "\n").write(to: directory.appendingPathComponent("Localizable.strings"),atomically: true,encoding: .utf8)
+    let name = language == "en" ? "Jianfan Zhuyin" : (language == "zh-Hans" ? "简繁注音" : "簡繁注音")
+    try ("\"CFBundleDisplayName\" = " + quote(name) + ";\n").write(to: directory.appendingPathComponent("InfoPlist.strings"),atomically: true,encoding: .utf8)
 }

@@ -1,0 +1,36 @@
+{
+  "version": "0.3.0",
+  "primaryLocale": "zh-Hant",
+  "category": "UTILITIES",
+  "price": "free",
+  "supportURL": "https://github.com/AllenPeng0209/jianfan-zhuyin/issues",
+  "privacyPolicyURL": "https://github.com/AllenPeng0209/jianfan-zhuyin/blob/main/docs/PRIVACY.md",
+  "sourceURL": "https://github.com/AllenPeng0209/jianfan-zhuyin",
+  "dataCollection": "none",
+  "requestsFullAccess": false,
+  "publisherTeam": null,
+  "localizations": {
+    "zh-Hant": {
+      "name": "簡繁注音 — 離線注音輸入法",
+      "subtitle": "標準注音、個人詞庫與選字記憶",
+      "keywords": "注音,簡體,繁體,離線,詞庫,大千,Bopomofo",
+      "description": "使用熟悉的標準大千注音，輸入簡體或繁體中文。\n\n簡繁注音將注音解析、簡繁轉換、候選與聯想續詞都留在本機。不需要帳戶、伺服器或完整取用，沒有廣告及分析服務。\n\n主要功能：\n• 標準注音鍵盤，支援簡繁切換並保留組字。\n• 記住明確選用的詞語，重新開啟鍵盤後繼續使用。\n• 依選用次數與時間調整聯想排序。\n• 搜尋、新增、編輯、刪除個人詞語，並自動建議讀音。\n• JSON 詞庫匯入匯出，可與 Mac、Windows 版本手動交換。\n• 隨時停用學習或清除選字記憶，保留個人詞庫。\n\n安裝後，請在「設定 → 一般 → 鍵盤 → 鍵盤 → 新增鍵盤」加入簡繁注音，再以地球鍵切換。不必開啟完整取用。\n\niOS 在密碼、部分電話欄位及不允許第三方鍵盤的應用中，會使用系統鍵盤。\n\n原始碼採開源授權，使用 McBopomofo 與 OpenCC 等開源元件，完整聲明可在程式內查閱。",
+      "releaseNotes": "首個 iOS 版本：標準注音、簡繁輸出、本機選字記憶、詞庫管理與聯想排序。"
+    },
+    "zh-Hans": {
+      "name": "简繁注音 — 离线注音输入法",
+      "subtitle": "标准注音、个人词库与选字记忆",
+      "keywords": "注音,简体,繁体,离线,词库,大千,Bopomofo",
+      "description": "使用标准大千注音，输入简体或繁体中文。注音解析、简繁转换、候选、选字记忆和联想排序都在本机完成，不需要账户、网络或完整取用，没有广告及分析服务。\n\n在主程序中搜索、新增、编辑、删除个人词语，自动建议读音，并使用 JSON 导入导出词库。可以随时停用学习或清除选字记忆，个人词库会保留。\n\n安装后，请在「设置 → 通用 → 键盘 → 键盘 → 添加新键盘」中加入简繁注音，再用地球键切换。不必开启完整取用。\n\niOS 在密码、部分电话输入框及不允许第三方键盘的应用中，会使用系统键盘。\n\n源代码开放，使用 McBopomofo 与 OpenCC 等开源组件，完整声明可在程序内查阅。",
+      "releaseNotes": "首个 iOS 版本：标准注音、简繁输出、本机选字记忆、词库管理与联想排序。"
+    },
+    "en-US": {
+      "name": "Jianfan Zhuyin",
+      "subtitle": "Offline Bopomofo, both scripts",
+      "keywords": "Bopomofo,Zhuyin,Chinese,offline,dictionary,traditional,simplified",
+      "description": "Type Simplified or Traditional Chinese with the standard Da-Qian Bopomofo layout. Composition, conversion, candidates, learning and phrase continuations run on your device. No account, network access, ads, analytics or Full Access is required.\n\nRemember explicit word choices across keyboard sessions, manage personal words and readings, and import or export a JSON dictionary for use on other Jianfan platforms. Learning can be disabled or cleared while keeping your personal dictionary.\n\nAfter installing, add Jianfan Zhuyin in Settings → General → Keyboard → Keyboards → Add New Keyboard. Switch with the globe key.\n\niOS uses its system keyboard in password fields, some telephone fields, and apps that disallow third-party keyboards.\n\nOpen-source software built with McBopomofo, OpenCC and other credited components. Full notices are available in the app.",
+      "releaseNotes": "First iOS version: standard Bopomofo, both Chinese scripts, local learning, dictionary management and association ranking."
+    }
+  },
+  "reviewNotes": "This app includes an offline custom keyboard extension and a dictionary/settings app. Enable the keyboard in iOS Settings. It does not request Full Access. Password fields and applications that disable custom keyboards use the system keyboard. No login or payment is required. Personal learning is stored only in the keyboard's sandbox; the containing app manages a shared lexicon that the keyboard reads."
+}
