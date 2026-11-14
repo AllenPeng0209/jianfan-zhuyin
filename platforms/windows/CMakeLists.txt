@@ -1,18 +1,23 @@
-add_library(JianfanIME SHARED TextService.cpp TextService.def Resources/Jianfan.rc)
-target_include_directories(JianfanIME PRIVATE Resources)
-target_link_libraries(JianfanIME PRIVATE JianfanCore ole32 oleaut32 uuid advapi32 shell32 shlwapi user32 gdi32)
-target_compile_definitions(JianfanIME PRIVATE UNICODE _UNICODE)
-set_target_properties(JianfanIME PROPERTIES PREFIX "" OUTPUT_NAME "JianfanIME")
-add_custom_command(TARGET JianfanIME POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:JianfanIME>/Data"
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${PROJECT_SOURCE_DIR}/Vendor/McBopomofo/Source/Data/data.txt" "$<TARGET_FILE_DIR:JianfanIME>/Data/"
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${PROJECT_SOURCE_DIR}/Vendor/McBopomofo/Source/Data/associated-phrases-v2.txt" "$<TARGET_FILE_DIR:JianfanIME>/Data/")
-foreach(DICT TSCharacters TSPhrases STCharacters STPhrases)
-    add_custom_command(TARGET JianfanIME POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${PROJECT_SOURCE_DIR}/Vendor/Dependencies/SwiftyOpenCC/Sources/OpenCC/Dictionary/${DICT}.ocd2" "$<TARGET_FILE_DIR:JianfanIME>/Data/")
-endforeach()
+function(jianfan_tip TARGET)
+    add_library(${TARGET} SHARED TextService.cpp ServiceImplementation.cpp CandidateUI.cpp TextService.def Resources/Jianfan.rc)
+    target_include_directories(${TARGET} PRIVATE Resources)
+    target_link_libraries(${TARGET} PRIVATE JianfanCore ole32 oleaut32 uuid advapi32 shell32 user32 gdi32 uiautomationcore)
+    target_compile_definitions(${TARGET} PRIVATE UNICODE _UNICODE _WIN32_WINNT=0x0A00)
+    set_target_properties(${TARGET} PROPERTIES PREFIX "" OUTPUT_NAME "${TARGET}")
+    add_custom_command(TARGET ${TARGET} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:${TARGET}>/Data"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${PROJECT_SOURCE_DIR}/Vendor/McBopomofo/Source/Data/data.txt" "$<TARGET_FILE_DIR:${TARGET}>/Data/"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${PROJECT_SOURCE_DIR}/Vendor/McBopomofo/Source/Data/associated-phrases-v2.txt" "$<TARGET_FILE_DIR:${TARGET}>/Data/")
+    foreach(DICT TSCharacters TSPhrases STCharacters STPhrases)
+        add_custom_command(TARGET ${TARGET} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${PROJECT_SOURCE_DIR}/Vendor/Dependencies/SwiftyOpenCC/Sources/OpenCC/Dictionary/${DICT}.ocd2" "$<TARGET_FILE_DIR:${TARGET}>/Data/")
+    endforeach()
+endfunction()
+jianfan_tip(JianfanIME)
 if(JIANFAN_TESTS)
+    jianfan_tip(JianfanIMETest)
+    target_compile_definitions(JianfanIMETest PRIVATE JIANFAN_TEST_PROFILE)
     add_executable(WindowsCOMTest COMTest.cpp)
     target_link_libraries(WindowsCOMTest PRIVATE GTest::gtest_main ole32 uuid user32)
-    add_dependencies(WindowsCOMTest JianfanIME)
+    add_dependencies(WindowsCOMTest JianfanIMETest)
 endif()

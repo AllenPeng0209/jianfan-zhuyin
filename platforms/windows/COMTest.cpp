@@ -8,7 +8,7 @@
 TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   using Microsoft::WRL::ComPtr;
   ASSERT_TRUE(SUCCEEDED(CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED)));
-  HMODULE module = LoadLibraryW(L"JianfanIME.dll");
+  HMODULE module = LoadLibraryW(L"JianfanIMETest.dll");
   ASSERT_NE(module,nullptr);
   auto factoryFunction = reinterpret_cast<HRESULT (__stdcall *)(REFCLSID,REFIID,void**)>(GetProcAddress(module,"DllGetClassObject"));
   ASSERT_NE(factoryFunction,nullptr);
@@ -43,6 +43,23 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   }
   EXPECT_EQ(store->text,L"你好");
   EXPECT_EQ(store->ended,0u);
+  BOOL opened = FALSE;
+  ASSERT_EQ(keys->OnKeyDown(context.Get(),VK_DOWN,0,&opened),S_OK);
+  ASSERT_TRUE(opened);
+  ComPtr<ITfUIElementMgr> ui;
+  ASSERT_EQ(manager.As(&ui),S_OK);
+  ComPtr<IEnumTfUIElements> elements;
+  ASSERT_EQ(ui->EnumUIElements(&elements),S_OK);
+  ComPtr<ITfCandidateListUIElementBehavior> candidates;
+  ULONG fetched = 0; DWORD id;
+  while (elements->Next(1,&id,&fetched) == S_OK && fetched) {
+    ComPtr<ITfUIElement> element; GUID guid;
+    if (SUCCEEDED(ui->GetUIElement(id,&element)) && SUCCEEDED(element->GetGUID(&guid)) && guid == GUID_JianfanCandidates) { element.As(&candidates); break; }
+  }
+  ASSERT_NE(candidates.Get(),nullptr);
+  UINT count = 0; EXPECT_EQ(candidates->GetCount(&count),S_OK); EXPECT_GT(count,0u);
+  EXPECT_EQ(candidates->Abort(),S_OK);
+  candidates.Reset(); elements.Reset(); ui.Reset();
   BOOL eaten = FALSE;
   ASSERT_EQ(keys->OnKeyDown(context.Get(),VK_RETURN,0,&eaten),S_OK);
   EXPECT_TRUE(eaten);
