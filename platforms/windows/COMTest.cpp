@@ -5,11 +5,26 @@
 #include "gtest/gtest.h"
 #include "TestTextStore.h"
 
+namespace {
+struct Registration {
+  HMODULE module = nullptr;
+  HRESULT (__stdcall *unregister)() = nullptr;
+  ~Registration() { if (unregister) { unregister(); } if (module) { FreeLibrary(module); } }
+};
+struct Apartment { ~Apartment() { CoUninitialize(); } };
+}
+
 TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   using Microsoft::WRL::ComPtr;
   ASSERT_TRUE(SUCCEEDED(CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED)));
+  Apartment apartment;
   HMODULE module = LoadLibraryW(L"JianfanIMETest.dll");
   ASSERT_NE(module,nullptr);
+  Registration registration; registration.module = module;
+  auto install = reinterpret_cast<HRESULT (__stdcall *)()>(GetProcAddress(module,"DllRegisterServer"));
+  registration.unregister = reinterpret_cast<HRESULT (__stdcall *)()>(GetProcAddress(module,"DllUnregisterServer"));
+  ASSERT_NE(install,nullptr); ASSERT_NE(registration.unregister,nullptr);
+  ASSERT_EQ(install(),S_OK);
   auto factoryFunction = reinterpret_cast<HRESULT (__stdcall *)(REFCLSID,REFIID,void**)>(GetProcAddress(module,"DllGetClassObject"));
   ASSERT_NE(factoryFunction,nullptr);
   ComPtr<IClassFactory> factory;
@@ -20,11 +35,18 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   EXPECT_EQ(processor.As(&keys),S_OK);
   ComPtr<ITfDisplayAttributeProvider> display;
   EXPECT_EQ(processor.As(&display),S_OK);
+  keys.Reset(); display.Reset(); processor.Reset(); factory.Reset();
   ComPtr<ITfThreadMgr> manager;
   ASSERT_EQ(CoCreateInstance(CLSID_TF_ThreadMgr,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&manager)),S_OK);
   TfClientId client = TF_CLIENTID_NULL;
   ASSERT_EQ(manager->Activate(&client),S_OK);
-  EXPECT_EQ(processor->ActivateEx(manager.Get(),client,TF_TMAE_UIELEMENTENABLEDONLY),S_OK);
+  ComPtr<ITfInputProcessorProfileMgr> profiles;
+  ASSERT_EQ(CoCreateInstance(CLSID_TF_InputProcessorProfiles,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&profiles)),S_OK);
+  ASSERT_EQ(profiles->ActivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS | TF_IPPMF_ENABLEPROFILE),S_OK);
+  ComPtr<ITfFunctionProvider> provider;
+  ASSERT_EQ(manager->GetFunctionProvider(CLSID_Jianfan,&provider),S_OK);
+  ASSERT_EQ(provider.As(&processor),S_OK);
+  ASSERT_EQ(processor.As(&keys),S_OK);
   ComPtr<TestTextStore> store;
   store.Attach(new TestTextStore());
   ComPtr<ITfDocumentMgr> document;
@@ -67,6 +89,8 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   EXPECT_EQ(store->text,L"你好");
   EXPECT_EQ(store->ended,1u);
   EXPECT_EQ(processor->Deactivate(),S_OK);
+  profiles->DeactivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS);
+  provider.Reset(); profiles.Reset();
   manager->SetFocus(nullptr);
   document->Pop(TF_POPF_ALL);
   context.Reset(); document.Reset(); store.Reset();
@@ -75,6 +99,4 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   auto canUnload = reinterpret_cast<HRESULT (__stdcall *)()>(GetProcAddress(module,"DllCanUnloadNow"));
   ASSERT_NE(canUnload,nullptr);
   EXPECT_EQ(canUnload(),S_OK);
-  FreeLibrary(module);
-  CoUninitialize();
 }

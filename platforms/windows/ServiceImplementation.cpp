@@ -84,6 +84,8 @@ HRESULT TextService::ActivateEx(ITfThreadMgr* manager,TfClientId client,DWORD) {
     manager_.As(&uiManager_);
     Ptr<ITfSource> source;
     if (SUCCEEDED(manager_.As(&source))) { source->AdviseSink(IID_ITfThreadMgrEventSink,static_cast<ITfThreadMgrEventSink*>(this),&sinkCookie_); }
+    Ptr<ITfSourceSingle> functions;
+    if (SUCCEEDED(manager_.As(&functions))) { functions->AdviseSingleSink(client_,IID_ITfFunctionProvider,static_cast<ITfFunctionProvider*>(this)); }
     Ptr<ITfCategoryMgr> category;
     if (SUCCEEDED(CoCreateInstance(CLSID_TF_CategoryMgr,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&category)))) { category->RegisterGUID(GUID_JianfanDisplay,&displayAtom_); }
     TF_PRESERVEDKEY script{'F',TF_MOD_CONTROL | TF_MOD_SHIFT};
@@ -103,6 +105,7 @@ HRESULT TextService::Deactivate() {
   if (manager_ && sinkCookie_ != TF_INVALID_COOKIE) {
     Ptr<ITfSource> source; if (SUCCEEDED(manager_.As(&source))) { source->UnadviseSink(sinkCookie_); }
   }
+  if (manager_) { Ptr<ITfSourceSingle> functions; if (SUCCEEDED(manager_.As(&functions))) { functions->UnadviseSingleSink(client_,IID_ITfFunctionProvider); } }
   sinkCookie_ = TF_INVALID_COOKIE; keys_.Reset(); uiManager_.Reset(); manager_.Reset(); client_ = TF_CLIENTID_NULL;
   return S_OK;
 }

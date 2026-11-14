@@ -39,9 +39,14 @@ HRESULT registerProfile(bool install) {
     std::wstring path(32768,L'\0'); DWORD length = GetModuleFileNameW(gModule,path.data(),static_cast<DWORD>(path.size()));
     if (!length || length >= path.size()) { return E_FAIL; } path.resize(length);
     const std::wstring description = L"簡繁注音";
-    result = profiles->RegisterProfile(CLSID_Jianfan,0x0404,GUID_JianfanProfile,description.c_str(),static_cast<ULONG>(description.size()),
-      path.c_str(),length,0,nullptr,0,TRUE,0);
-  } else { result = profiles->UnregisterProfile(CLSID_Jianfan,0x0404,GUID_JianfanProfile,0); }
+#ifdef JIANFAN_TEST_PROFILE
+    constexpr BOOL enabled = FALSE;
+#else
+    constexpr BOOL enabled = TRUE;
+#endif
+    result = profiles->RegisterProfile(CLSID_Jianfan,JianfanLanguage,GUID_JianfanProfile,description.c_str(),static_cast<ULONG>(description.size()),
+      path.c_str(),length,0,nullptr,0,enabled,0);
+  } else { result = profiles->UnregisterProfile(CLSID_Jianfan,JianfanLanguage,GUID_JianfanProfile,0); }
   if (FAILED(result) && install) { return result; }
   Ptr<ITfCategoryMgr> category;
   HRESULT categoryResult = CoCreateInstance(CLSID_TF_CategoryMgr,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&category));
