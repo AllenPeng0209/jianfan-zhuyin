@@ -23,8 +23,10 @@ jobs:
       - uses: actions/checkout@v7
       - run: python scripts/generate-data.py
       - run: cmake -S . -B build/Windows -A x64
-      - run: cmake --build build/Windows --config Release --parallel 4
+      - run: cmake --build build/Windows --config Release --target JianfanCoreTest McBopomofoLMLibTest --parallel 4
       - run: build/Windows/Release/JianfanCoreTest.exe
+      - run: build/Windows/Vendor/McBopomofo/Source/Engine/Release/McBopomofoLMLibTest.exe
+      - run: cmake --build build/Windows --config Release --target WindowsCOMTest --parallel 4
       - run: build/Windows/platforms/windows/Release/WindowsCOMTest.exe
   macos:
     runs-on: xcode-27
