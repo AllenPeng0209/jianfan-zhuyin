@@ -92,7 +92,12 @@ HRESULT TextService::ActivateEx(ITfThreadMgr* manager,TfClientId client,DWORD) {
     Ptr<ITfSource> source;
     if (SUCCEEDED(manager_.As(&source))) { source->AdviseSink(IID_ITfThreadMgrEventSink,static_cast<ITfThreadMgrEventSink*>(this),&sinkCookie_); }
     Ptr<ITfSourceSingle> functions;
-    if (SUCCEEDED(manager_.As(&functions))) { functions->AdviseSingleSink(client_,IID_ITfFunctionProvider,static_cast<ITfFunctionProvider*>(this)); }
+    result = manager_.As(&functions);
+    if (FAILED(result)) { Deactivate(); return result; }
+    Ptr<IUnknown> identity;
+    QueryInterface(IID_PPV_ARGS(&identity));
+    result = functions->AdviseSingleSink(client_,IID_ITfFunctionProvider,identity.Get());
+    if (FAILED(result)) { Deactivate(); return result; }
     Ptr<ITfCategoryMgr> category;
     if (SUCCEEDED(CoCreateInstance(CLSID_TF_CategoryMgr,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&category)))) { category->RegisterGUID(GUID_JianfanDisplay,&displayAtom_); }
     TF_PRESERVEDKEY script{'F',TF_MOD_CONTROL | TF_MOD_SHIFT};
