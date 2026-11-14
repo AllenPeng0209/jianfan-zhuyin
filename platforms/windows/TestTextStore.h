@@ -12,10 +12,12 @@ class TestTextStore final : public ITextStoreACP, public ITfContextOwnerComposit
   std::wstring text;
   ULONG ended = 0;
   TestTextStore() {
-    window_ = CreateWindowExW(0,L"STATIC",L"Jianfan test document",WS_OVERLAPPEDWINDOW | WS_VISIBLE,0,0,500,400,nullptr,nullptr,GetModuleHandleW(nullptr),nullptr);
+    WNDCLASSEXW cls{sizeof(cls)}; cls.lpfnWndProc = DefWindowProcW; cls.hInstance = GetModuleHandleW(nullptr);
+    cls.lpszClassName = L"Jianfan.TSFTest.Document"; RegisterClassExW(&cls);
+    window_ = CreateWindowExW(0,cls.lpszClassName,L"Jianfan test document",WS_OVERLAPPEDWINDOW | WS_VISIBLE,0,0,500,400,nullptr,nullptr,cls.hInstance,nullptr);
     SetForegroundWindow(window_); SetFocus(window_);
   }
-  ~TestTextStore() { if (window_) { DestroyWindow(window_); } }
+  ~TestTextStore() { if (window_) { DestroyWindow(window_); } UnregisterClassW(L"Jianfan.TSFTest.Document",GetModuleHandleW(nullptr)); }
   HRESULT __stdcall QueryInterface(REFIID iid,void** result) override {
     if (!result) { return E_POINTER; } *result = nullptr;
     if (iid == IID_IUnknown || iid == IID_ITextStoreACP) { *result = static_cast<ITextStoreACP*>(this); }

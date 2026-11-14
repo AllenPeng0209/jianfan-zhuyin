@@ -69,6 +69,11 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   ASSERT_EQ(CoCreateInstance(CLSID_TF_InputProcessorProfiles,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&profiles)),S_OK);
   ComPtr<ITfInputProcessorProfiles> languages;
   ASSERT_EQ(profiles.As(&languages),S_OK);
+  HKL layout = LoadKeyboardLayoutW(L"00000404",KLF_NOTELLSHELL);
+  std::cout << "Traditional Chinese keyboard layout: " << layout << "; error: " << GetLastError() << "\n";
+  ASSERT_NE(layout,nullptr);
+  MSG message;
+  while (PeekMessageW(&message,nullptr,0,0,PM_REMOVE)) { TranslateMessage(&message); DispatchMessageW(&message); }
   ASSERT_EQ(languages->ChangeCurrentLanguage(JianfanLanguage),S_OK);
   ASSERT_EQ(profiles->ActivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS | TF_IPPMF_ENABLEPROFILE),S_OK);
   ComPtr<ITfFunctionProvider> provider;
