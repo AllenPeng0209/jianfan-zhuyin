@@ -5,14 +5,49 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   portable-core:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - run: python3 scripts/generate-data.py
       - run: cmake -S . -B build/EngineTests -DCMAKE_BUILD_TYPE=Release
-      - run: cmake --build build/EngineTests --target McBopomofoLMLibTest --parallel 2
+      - run: cmake --build build/EngineTests --parallel 2
       - run: build/EngineTests/Vendor/McBopomofo/Source/Engine/McBopomofoLMLibTest
+      - run: build/EngineTests/JianfanCoreTest
+      - run: build/EngineTests/Vendor/McBopomofo/Source/Engine/Mandarin/MandarinTest
+      - run: build/EngineTests/Vendor/McBopomofo/Source/Engine/gramambular2/gramambular2_test
+  windows:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        architecture: [x64, Win32]
+    steps:
+      - uses: actions/checkout@v7
+      - run: python scripts/generate-data.py
+      - run: cmake -S . -B build/Windows -A ${{ matrix.architecture }}
+      - run: cmake --build build/Windows --config Release --target JianfanCoreTest McBopomofoLMLibTest --parallel 4
+      - run: build/Windows/Release/JianfanCoreTest.exe
+      - run: build/Windows/Vendor/McBopomofo/Source/Engine/Release/McBopomofoLMLibTest.exe
+      - run: cmake --build build/Windows --config Release --target WindowsCOMTest --parallel 4
+      - run: ./scripts/test-windows-native.ps1
+      - run: cmake --build build/Windows --config Release --target WindowsSettingsUITest --parallel 4
+        if: always()
+      - run: build/Windows/platforms/windows/Release/WindowsSettingsUITest.exe
+        if: always()
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: windows-test-results-${{ matrix.architecture }}
+          path: |
+            windows-word-manager.png
+            windows-com*.log
+          if-no-files-found: ignore
+          retention-days: 14
   macos:
     runs-on: xcode-27
     steps:
@@ -21,6 +56,8 @@ jobs:
       - run: swift test --package-path Vendor/McBopomofo/Packages/JianfanUserData --scratch-path build/UserDataTests
       - run: bash scripts/test-macos.sh
       - run: bash scripts/build-local.sh
+      - run: bash scripts/test-ios.sh
+        timeout-minutes: 15
       - uses: actions/upload-artifact@v7
         if: always()
         with:
@@ -29,4 +66,20 @@ jobs:
             build/logs/*.log
             dist/*.dmg
             dist/SHA256SUMS.txt
+          retention-days: 14
+  windows-package:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: ./scripts/build-windows.ps1
+      - run: ./scripts/test-windows-installer.ps1
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: windows-installer-candidate
+          path: |
+            dist/JianfanZhuyin-*-windows-x64.exe
+            dist/SHA256SUMS-Windows.txt
+            dist/windows-stage/SHA256SUMS.txt
+            build/installer-smoke/*.log
           retention-days: 14

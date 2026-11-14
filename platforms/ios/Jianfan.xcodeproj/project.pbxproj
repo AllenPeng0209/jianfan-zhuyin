@@ -1,0 +1,1482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		086BF27C9C78E61ACE8CB992 /* DictConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF14778361A7E90242490ED /* DictConverter.cpp */; };
+		09308D8EF767EC59F2DFBB55 /* UTF8StringSlice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D37ED3D0FE93CA911E02A85A /* UTF8StringSlice.cpp */; };
+		0B54593248902BEF965CB645 /* reader.cc in Sources */ = {isa = PBXBuildFile; fileRef = 19C5D2B212B74328FD6FA8D5 /* reader.cc */; };
+		0C6D600B1754EB6A4C6A6DAC /* JianfanUserData in Frameworks */ = {isa = PBXBuildFile; productRef = B12132C8DB43C64D45820375 /* JianfanUserData */; };
+		0CD3A98C49785DE42255EF64 /* MaxMatchSegmentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86073C57A73990465EA2B08F /* MaxMatchSegmentation.cpp */; };
+		10E6CB2ABFBB98E2919B5D93 /* bit-vector.cc in Sources */ = {isa = PBXBuildFile; fileRef = C8AAF1D587B6CDB22DBCA6B2 /* bit-vector.cc */; };
+		1142C00208841BE3379AC872 /* Lexicon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11BCF97FBDE43338502AF5A6 /* Lexicon.cpp */; };
+		15850434FEE8B32D7A05386F /* UserPhrasesLM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 246FEABA46CA6D829A386D08 /* UserPhrasesLM.cpp */; };
+		173617D858BA9B92D8F2A26A /* McBopomofoLM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70EEF34DA868E2521C10EBD5 /* McBopomofoLM.cpp */; };
+		1A00E63D823430B4C8E60E48 /* McBopomofoLM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70EEF34DA868E2521C10EBD5 /* McBopomofoLM.cpp */; };
+		20464C2148DC80D905285DE6 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ADFCC0CF0912292EFB62C9 /* ContentViewController.swift */; };
+		20F8624E0C6BAB7FF35BF5EF /* TextDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFD78A98001D29BF5916E6C7 /* TextDict.cpp */; };
+		230CB83F7D12AEAACD64370A /* ByteBlockBackedDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B54EB798FCCBA0CDBD19BD68 /* ByteBlockBackedDictionary.cpp */; };
+		24B03E3A58A1183FC9633267 /* EngineBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEFB473D2A30AE25C482170E /* EngineBridge.mm */; };
+		2B68754B702A6AEDC5EF27DB /* Session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23F3815EA881B0DAF7A4A35E /* Session.cpp */; };
+		2BDA120DE8FC7E312996D721 /* agent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E9E8BCB3195F95608026C /* agent.cc */; };
+		2CA99FCA488453E58DEA6DF7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B946B4DCCA14B165FDF371FD /* Localizable.strings */; };
+		2D83FC6ECB48391B6F0640F5 /* trie.cc in Sources */ = {isa = PBXBuildFile; fileRef = 974A2B0D8216970149A18186 /* trie.cc */; };
+		2DD4570422617807C232C0D5 /* JianfanUserData in Frameworks */ = {isa = PBXBuildFile; productRef = 617C6D9B10233DC4F6350035 /* JianfanUserData */; };
+		2EE27B8C2B28814CF10D184F /* Conversion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCF9B42C0030533E37865748 /* Conversion.cpp */; };
+		2EF59418E900A041A7C60C0F /* SerializedValues.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A35ADE75A701326C11CF6C /* SerializedValues.cpp */; };
+		2EF7A46474B19B05E32BEB67 /* mapper.cc in Sources */ = {isa = PBXBuildFile; fileRef = 256080C6AA426BDC56B80803 /* mapper.cc */; };
+		2F9ABB84715DA36190CF1AED /* bit-vector.cc in Sources */ = {isa = PBXBuildFile; fileRef = C8AAF1D587B6CDB22DBCA6B2 /* bit-vector.cc */; };
+		2FF8468E7FB9C07DD5283020 /* VariantAnnotator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399FA8882693FDF6B8D0A1A1 /* VariantAnnotator.cpp */; };
+		3145A70DDC55A3D6CF06AF8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C988E101281CADDBB78C9F8 /* Assets.xcassets */; };
+		34B00068D80A955777E05596 /* AssociatedPhrasesV2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9EF4F815CCC0070601BAE /* AssociatedPhrasesV2.cpp */; };
+		35EE25276C513AAF93DED5D4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AF6A3BE6CD7CAE45639D8F36 /* README.md */; };
+		377E3EF614D67B68207F5504 /* tail.cc in Sources */ = {isa = PBXBuildFile; fileRef = BF01718ACABC7441AB78CBEA /* tail.cc */; };
+		38E619D4298DE53428B51CFD /* Mandarin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68EC724E57A3147BBD38A13A /* Mandarin.cpp */; };
+		38EEC3098B629430D844316E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24644FB466CC5AD6DACECB7A /* InfoPlist.strings */; };
+		3A59E28330BA1C5A93B43C29 /* Converter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BE6FFC34C77ED9ECA87DF1C /* Converter.cpp */; };
+		3DC5ADB545AC31C2DDDA47F3 /* ParselessPhraseDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC93CA7EACC9355ECAA207 /* ParselessPhraseDB.cpp */; };
+		3E021F721200AC43CBCA9BC3 /* UserOverrideModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA15E34A049D4D97B03E52F0 /* UserOverrideModel.cpp */; };
+		3E0D779D1913FE36395CAD23 /* reading_grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215044377C17AE3B5E254766 /* reading_grid.cpp */; };
+		3E296A07C471DF0D3D1F13AE /* VariantAnnotator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399FA8882693FDF6B8D0A1A1 /* VariantAnnotator.cpp */; };
+		42193495599647AC208A82C8 /* Session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23F3815EA881B0DAF7A4A35E /* Session.cpp */; };
+		42882923FD6247ECDFC6455F /* trie.cc in Sources */ = {isa = PBXBuildFile; fileRef = 974A2B0D8216970149A18186 /* trie.cc */; };
+		4568312C1DB0C2818EE45BBB /* keyset.cc in Sources */ = {isa = PBXBuildFile; fileRef = 69BA16D3FECB1107463BF7D1 /* keyset.cc */; };
+		45D9F4E2A68C4218A20A9499 /* ParselessLM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F48DD66632CBF0CCB431936 /* ParselessLM.cpp */; };
+		4762DCB07AA7BC13AC7FA601 /* SerializedValues.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A35ADE75A701326C11CF6C /* SerializedValues.cpp */; };
+		484263236C5B0BA4A6BEE75B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B946B4DCCA14B165FDF371FD /* Localizable.strings */; };
+		48594B607DE1C12A5384150E /* EngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0C3EEAD3321ACBE0EA487 /* EngineTests.swift */; };
+		4F6715CE1204C8018B63F9B5 /* KeyboardModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5804F8F568DDB28B628D17D7 /* KeyboardModelTests.swift */; };
+		5280752D1FE14420A1F59FFD /* tail.cc in Sources */ = {isa = PBXBuildFile; fileRef = BF01718ACABC7441AB78CBEA /* tail.cc */; };
+		52A5134575EA44B51BA73C19 /* Converter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BE6FFC34C77ED9ECA87DF1C /* Converter.cpp */; };
+		5D6B4280BFAB8C8A2C79CE5E /* MarisaDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06675873112F87FBCEDA23A /* MarisaDict.cpp */; };
+		62390EC9DB5DAE96A544D505 /* MarisaDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06675873112F87FBCEDA23A /* MarisaDict.cpp */; };
+		62AE9DDB61E247D8187ACBD7 /* Dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = 8512BB443AD6424E9CC0006D /* Dictionaries */; };
+		6474E8CDB1D11D4EEC154821 /* LexiconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85D253A7691D7CAF7351764 /* LexiconViewController.swift */; };
+		69F34AC2B43E8FAD435E00FB /* BinaryDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 959CFE87AAA419E1172095AB /* BinaryDict.cpp */; };
+		6F1871283D37E6BD1A22EAD6 /* DictConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AF14778361A7E90242490ED /* DictConverter.cpp */; };
+		7073F3332EAFB12BF13CAB36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916743883D652E335DC17A0B /* AppDelegate.swift */; };
+		72E641439E679938EB87800D /* Mandarin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68EC724E57A3147BBD38A13A /* Mandarin.cpp */; };
+		78D28AAF7E315D77BAA3E990 /* Conversion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCF9B42C0030533E37865748 /* Conversion.cpp */; };
+		806390B387F553535ABD9B57 /* mapper.cc in Sources */ = {isa = PBXBuildFile; fileRef = 256080C6AA426BDC56B80803 /* mapper.cc */; };
+		82253ACBE963A8D03705A306 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63579EC9B3EF61ED6F100F5 /* KeyboardView.swift */; };
+		8283D2952681F5EAE0A0A35D /* UTF8Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9670F9895646BF4DCDE3836E /* UTF8Helper.cpp */; };
+		830125901464DCE22F06ED75 /* UTF8StringSlice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D37ED3D0FE93CA911E02A85A /* UTF8StringSlice.cpp */; };
+		84EE02A776AE706474521F3C /* AssociatedPhrasesV2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9EF4F815CCC0070601BAE /* AssociatedPhrasesV2.cpp */; };
+		8B5C27FC90154006E8617969 /* ParselessLM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F48DD66632CBF0CCB431936 /* ParselessLM.cpp */; };
+		8D686D11A11C9E1270B4D50E /* DictGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35F81A1F47255048B4274B58 /* DictGroup.cpp */; };
+		8F8B482D2D66585413BE4785 /* EngineBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEFB473D2A30AE25C482170E /* EngineBridge.mm */; };
+		95CD477B45289E90D37B7562 /* BinaryDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 959CFE87AAA419E1172095AB /* BinaryDict.cpp */; };
+		9654E436B4DD870EB99761D1 /* DartsDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 774B99F7C16E708D21174D71 /* DartsDict.cpp */; };
+		970D983A4E2C2057A9EE756D /* KeyboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265F935786CCFFDF0F7D69EA /* KeyboardModel.swift */; };
+		986F40612F5899C0E5030D7B /* writer.cc in Sources */ = {isa = PBXBuildFile; fileRef = B92C72F2B9368F047EA4F20E /* writer.cc */; };
+		98AAE9BEBCE69AE62AB095DC /* writer.cc in Sources */ = {isa = PBXBuildFile; fileRef = B92C72F2B9368F047EA4F20E /* writer.cc */; };
+		997AEAA18296370DE4882DBA /* Segmentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A2197B3F9859055CA01CA5C0 /* Segmentation.cpp */; };
+		9B240C2884676CEEC4239A5B /* MaxMatchSegmentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86073C57A73990465EA2B08F /* MaxMatchSegmentation.cpp */; };
+		9DA6B69F38BC94FC242DE40B /* Dict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1858CC544A3903FE17B179D /* Dict.cpp */; };
+		A3F92C8FF839BCF2AFC7E6FF /* KeyboardSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A952655889C4D1F43AABF2E /* KeyboardSettings.swift */; };
+		A53B304F0ECF79E8EDECF8C4 /* reader.cc in Sources */ = {isa = PBXBuildFile; fileRef = 19C5D2B212B74328FD6FA8D5 /* reader.cc */; };
+		A5E9E36FF86817DC342A5FFD /* ByteBlockBackedDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B54EB798FCCBA0CDBD19BD68 /* ByteBlockBackedDictionary.cpp */; };
+		A985C2950B6A8EE5FCFA6559 /* DictGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35F81A1F47255048B4274B58 /* DictGroup.cpp */; };
+		AF566A88838359DBE2B7B950 /* PhraseReplacementMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFCF9C94ECB5E5B59076A880 /* PhraseReplacementMap.cpp */; };
+		B248C4C48245727741B326B3 /* Lexicon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11BCF97FBDE43338502AF5A6 /* Lexicon.cpp */; };
+		B61E389BF2E75DEB83531261 /* KeyboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265F935786CCFFDF0F7D69EA /* KeyboardModel.swift */; };
+		B7A7B31DC5DEBCA204BFFDC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24644FB466CC5AD6DACECB7A /* InfoPlist.strings */; };
+		BE8D5D691115F70643B32934 /* ParselessPhraseDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC93CA7EACC9355ECAA207 /* ParselessPhraseDB.cpp */; };
+		BFC34BD0A6491D965F6D2AF1 /* MemoryMappedFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 022B74355D66CC6D7A7428BB /* MemoryMappedFile.cpp */; };
+		C01F52CCBD5E53A83EEFAF2A /* Segmentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A2197B3F9859055CA01CA5C0 /* Segmentation.cpp */; };
+		C234F9091831EFFB24F5914F /* Dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = 8512BB443AD6424E9CC0006D /* Dictionaries */; };
+		C23EF321B9B69A5F50543925 /* UTF8Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847C29B8CE322EE7CF652B38 /* UTF8Util.cpp */; };
+		C5976E3B24C7FA5735BD9BFA /* louds-trie.cc in Sources */ = {isa = PBXBuildFile; fileRef = 337E0D5EFF8FA2799795E62D /* louds-trie.cc */; };
+		C5CC475BCBF8A10D651E444B /* TypingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3151BAD1787BF7D6D13493 /* TypingUITests.swift */; };
+		C6C5EA050997555DD5D635C1 /* agent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E9E8BCB3195F95608026C /* agent.cc */; };
+		C9C85EB0680A71A2C7F5A52C /* keyset.cc in Sources */ = {isa = PBXBuildFile; fileRef = 69BA16D3FECB1107463BF7D1 /* keyset.cc */; };
+		C9CD2BCAF78644526080E715 /* PhraseReplacementMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFCF9C94ECB5E5B59076A880 /* PhraseReplacementMap.cpp */; };
+		C9E373036DD5D61DEDE290A7 /* UserOverrideModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA15E34A049D4D97B03E52F0 /* UserOverrideModel.cpp */; };
+		CBC30245C481A2E20986B1D2 /* UserPhrasesLM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 246FEABA46CA6D829A386D08 /* UserPhrasesLM.cpp */; };
+		CBE5748F00D999E878C325C1 /* UTF8Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847C29B8CE322EE7CF652B38 /* UTF8Util.cpp */; };
+		D0323ED315FF739968D229C5 /* Dict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1858CC544A3903FE17B179D /* Dict.cpp */; };
+		D187E0564BFAC16F7EE38DC4 /* UTF8Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9670F9895646BF4DCDE3836E /* UTF8Helper.cpp */; };
+		D5A44F3702CFCC3B834CE573 /* DictEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A83C66DD87225D60E90272E /* DictEntry.cpp */; };
+		D780988783445E79A15DFDC9 /* DictEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A83C66DD87225D60E90272E /* DictEntry.cpp */; };
+		DA62AC359DC70A18C180A1E7 /* DartsDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 774B99F7C16E708D21174D71 /* DartsDict.cpp */; };
+		E01CF7E76FD5FDA206AFE33F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 5F4BA7BB0D3BC7AAA6BDE04D /* PrivacyInfo.xcprivacy */; };
+		E2470D0FB3C283D7A0266218 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 5F4BA7BB0D3BC7AAA6BDE04D /* PrivacyInfo.xcprivacy */; };
+		E3399D0FEF598F38D7A6A55F /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548F8677517B2C1B099ECA3C /* KeyboardViewController.swift */; };
+		E4839401590B62DBE40EB9D7 /* SystemKeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82780FB3BF3AA2B4F8CF55FA /* SystemKeyboardTests.swift */; };
+		EED3E9FE4433E9AAE69CC577 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AF6A3BE6CD7CAE45639D8F36 /* README.md */; };
+		F594A0E5EF6227A3148FAFDC /* KeyboardSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A952655889C4D1F43AABF2E /* KeyboardSettings.swift */; };
+		F62F65D82283FD7055C0172B /* JianfanKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6719B7BEA6E63228607B3543 /* JianfanKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F6E3BE499C3A743FE3B7D6E6 /* ConversionChain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00484F150B2B844675E0C506 /* ConversionChain.cpp */; };
+		F72B23009A9616C0F9D93FFC /* MemoryMappedFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 022B74355D66CC6D7A7428BB /* MemoryMappedFile.cpp */; };
+		F8D0CF28E78A923CE962FDEB /* TextDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFD78A98001D29BF5916E6C7 /* TextDict.cpp */; };
+		F8F1172FB22CC17774F9F0D0 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63579EC9B3EF61ED6F100F5 /* KeyboardView.swift */; };
+		FBAD2E77FC513E0AD6D96A0E /* ConversionChain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00484F150B2B844675E0C506 /* ConversionChain.cpp */; };
+		FDE446677ABD23CC17F318ED /* louds-trie.cc in Sources */ = {isa = PBXBuildFile; fileRef = 337E0D5EFF8FA2799795E62D /* louds-trie.cc */; };
+		FECD7E1B71418A8F25828282 /* reading_grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215044377C17AE3B5E254766 /* reading_grid.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1F59873FD4761A94BCE30FAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF4E9343EB6AF66DCCBD173B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81E6C3281218864ABC479BA8;
+			remoteInfo = Jianfan;
+		};
+		2FB91779BDE8CBAEC50A424D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF4E9343EB6AF66DCCBD173B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81E6C3281218864ABC479BA8;
+			remoteInfo = Jianfan;
+		};
+		622BF0C5DA37FFF7B8F4C85D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF4E9343EB6AF66DCCBD173B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7A7F842D72B22A33EB9EBD5;
+			remoteInfo = JianfanKeyboard;
+		};
+		71C970DC9A8CAF869073E6E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF4E9343EB6AF66DCCBD173B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81E6C3281218864ABC479BA8;
+			remoteInfo = Jianfan;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C7E442B6869D7D40A74D7B34 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F62F65D82283FD7055C0172B /* JianfanKeyboard.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		00484F150B2B844675E0C506 /* ConversionChain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConversionChain.cpp; sourceTree = "<group>"; };
+		022B74355D66CC6D7A7428BB /* MemoryMappedFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryMappedFile.cpp; sourceTree = "<group>"; };
+		0AB124DB79A690588EBC1D5D /* Segmentation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Segmentation.hpp; sourceTree = "<group>"; };
+		0C3111C5009E0DB8C8690C03 /* pop-count.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pop-count.h"; sourceTree = "<group>"; };
+		0D0C7F66804D8209C2DADF5E /* CmdLineOutput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CmdLineOutput.hpp; sourceTree = "<group>"; };
+		0E256376C00DC2D2A5D7ED96 /* range.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = range.h; sourceTree = "<group>"; };
+		0E4E9E8BCB3195F95608026C /* agent.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = agent.cc; sourceTree = "<group>"; };
+		11BCF97FBDE43338502AF5A6 /* Lexicon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Lexicon.cpp; sourceTree = "<group>"; };
+		18A35ADE75A701326C11CF6C /* SerializedValues.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SerializedValues.cpp; sourceTree = "<group>"; };
+		19466595688F0AA6A0CEADD1 /* Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridging.h; sourceTree = "<group>"; };
+		19C5D2B212B74328FD6FA8D5 /* reader.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = reader.cc; sourceTree = "<group>"; };
+		1ABC8978285653CE26AC8BE4 /* Conversion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Conversion.hpp; sourceTree = "<group>"; };
+		20862BFD129576FA78A2E836 /* trie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = trie.h; sourceTree = "<group>"; };
+		212B113689E890BD4F3314A4 /* ParselessLM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParselessLM.h; sourceTree = "<group>"; };
+		215044377C17AE3B5E254766 /* reading_grid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = reading_grid.cpp; sourceTree = "<group>"; };
+		22420BE75D85BBCD2C523DE2 /* UTF8Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UTF8Util.hpp; sourceTree = "<group>"; };
+		23F3815EA881B0DAF7A4A35E /* Session.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Session.cpp; sourceTree = "<group>"; };
+		246FEABA46CA6D829A386D08 /* UserPhrasesLM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UserPhrasesLM.cpp; sourceTree = "<group>"; };
+		256080C6AA426BDC56B80803 /* mapper.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mapper.cc; sourceTree = "<group>"; };
+		265F935786CCFFDF0F7D69EA /* KeyboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardModel.swift; sourceTree = "<group>"; };
+		2D5BE40314E174B5BDF2BEF3 /* sort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sort.h; sourceTree = "<group>"; };
+		2DCC93CA7EACC9355ECAA207 /* ParselessPhraseDB.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ParselessPhraseDB.cpp; sourceTree = "<group>"; };
+		337E0D5EFF8FA2799795E62D /* louds-trie.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "louds-trie.cc"; sourceTree = "<group>"; };
+		35F81A1F47255048B4274B58 /* DictGroup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DictGroup.cpp; sourceTree = "<group>"; };
+		378A0C9AB1B829B4E4ADCAE7 /* DictConverter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DictConverter.hpp; sourceTree = "<group>"; };
+		399FA8882693FDF6B8D0A1A1 /* VariantAnnotator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VariantAnnotator.cpp; sourceTree = "<group>"; };
+		3A3151BAD1787BF7D6D13493 /* TypingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingUITests.swift; sourceTree = "<group>"; };
+		3AD7E1E09523A77A9B9AF573 /* SerializableDict.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SerializableDict.hpp; sourceTree = "<group>"; };
+		410A9199EC34BBD5ABD6AC64 /* PhraseReplacementMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhraseReplacementMap.h; sourceTree = "<group>"; };
+		4387B0C7CD37295455DAECF6 /* reader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		4467BDA76EDDB9DCDA7BC3D7 /* MaxMatchSegmentation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MaxMatchSegmentation.hpp; sourceTree = "<group>"; };
+		47E91066E0B8C8D481152DAA /* JianfanTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = JianfanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		47E9B89F6AAD2BE08FD983CB /* JianfanUserData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = JianfanUserData; path = ../../Vendor/McBopomofo/Packages/JianfanUserData; sourceTree = SOURCE_ROOT; };
+		4AB9700F63DE037BBE857ADD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4BE15774B6A3671E9D10CD75 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4BE6FFC34C77ED9ECA87DF1C /* Converter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Converter.cpp; sourceTree = "<group>"; };
+		4C988E101281CADDBB78C9F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4D1D1CCA4DEF0D6FAF873C3F /* header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = header.h; sourceTree = "<group>"; };
+		4D62026E77A5910EB84440E0 /* UTF8Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTF8Helper.h; sourceTree = "<group>"; };
+		536F8479CE16A03BF0185711 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		548F8677517B2C1B099ECA3C /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		5804F8F568DDB28B628D17D7 /* KeyboardModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardModelTests.swift; sourceTree = "<group>"; };
+		5AC4AA2AFA57A419FFA313EB /* JianfanUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = JianfanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C0F442333249585884A9637 /* cache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cache.h; sourceTree = "<group>"; };
+		5C4A1BC86C1F3FE4EBB13837 /* Jianfan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Jianfan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F4BA7BB0D3BC7AAA6BDE04D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		5FC5EB10E03FCF899B55D8FB /* UserOverrideModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserOverrideModel.h; sourceTree = "<group>"; };
+		6049D415038571F5322C67E1 /* reading_grid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reading_grid.h; sourceTree = "<group>"; };
+		629A810F95D3083A60DC6C94 /* Export.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Export.hpp; sourceTree = "<group>"; };
+		6536C92A58B097C4A49504C5 /* UTF8StringSlice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UTF8StringSlice.hpp; sourceTree = "<group>"; };
+		66AD06AAFE33B08D9E86AE7E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		6719B7BEA6E63228607B3543 /* JianfanKeyboard.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = JianfanKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		68EC724E57A3147BBD38A13A /* Mandarin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mandarin.cpp; sourceTree = "<group>"; };
+		69BA16D3FECB1107463BF7D1 /* keyset.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = keyset.cc; sourceTree = "<group>"; };
+		6AF14778361A7E90242490ED /* DictConverter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DictConverter.cpp; sourceTree = "<group>"; };
+		6AF7BF2748C363011A79C938 /* Optional.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Optional.hpp; sourceTree = "<group>"; };
+		6CFE7766A04998763BDC702F /* key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key.h; sourceTree = "<group>"; };
+		6E0BC981850EA953D64AB555 /* JianfanSystemUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = JianfanSystemUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F48DD66632CBF0CCB431936 /* ParselessLM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ParselessLM.cpp; sourceTree = "<group>"; };
+		70EEF34DA868E2521C10EBD5 /* McBopomofoLM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = McBopomofoLM.cpp; sourceTree = "<group>"; };
+		774B99F7C16E708D21174D71 /* DartsDict.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DartsDict.cpp; sourceTree = "<group>"; };
+		78D50CA6D85B8762A1CEECDA /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		7A7B3F94ABDAA3484D5D9D43 /* louds-trie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "louds-trie.h"; sourceTree = "<group>"; };
+		7A83C66DD87225D60E90272E /* DictEntry.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DictEntry.cpp; sourceTree = "<group>"; };
+		7BC6E7D1D1560FE35F30DD8B /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		7D3145857BA13A98C648FDC9 /* ByteBlockBackedDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ByteBlockBackedDictionary.h; sourceTree = "<group>"; };
+		7FB9EF4F815CCC0070601BAE /* AssociatedPhrasesV2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AssociatedPhrasesV2.cpp; sourceTree = "<group>"; };
+		80FAE7D55B5710F45D941096 /* ConversionChain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConversionChain.hpp; sourceTree = "<group>"; };
+		81B23154BF05EBA9665FE998 /* Lexicon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Lexicon.hpp; sourceTree = "<group>"; };
+		82780FB3BF3AA2B4F8CF55FA /* SystemKeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemKeyboardTests.swift; sourceTree = "<group>"; };
+		847C29B8CE322EE7CF652B38 /* UTF8Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UTF8Util.cpp; sourceTree = "<group>"; };
+		850A13543C176D2FDC1D74B2 /* language_model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = language_model.h; sourceTree = "<group>"; };
+		8512BB443AD6424E9CC0006D /* Dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dictionaries; sourceTree = SOURCE_ROOT; };
+		86073C57A73990465EA2B08F /* MaxMatchSegmentation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MaxMatchSegmentation.cpp; sourceTree = "<group>"; };
+		8EFF15ED6A4881F3DDD96F6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		907B6630F4F3DBF75C4808AA /* AssociatedPhrasesV2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssociatedPhrasesV2.h; sourceTree = "<group>"; };
+		91336B1454D5D170FF2D0DC3 /* bit-vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bit-vector.h"; sourceTree = "<group>"; };
+		916743883D652E335DC17A0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		91ADFCC0CF0912292EFB62C9 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		93D05A396124324F0B62F4FA /* mapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mapper.h; sourceTree = "<group>"; };
+		959CFE87AAA419E1172095AB /* BinaryDict.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BinaryDict.cpp; sourceTree = "<group>"; };
+		9621571E5711718FBC8FE247 /* TextDict.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TextDict.hpp; sourceTree = "<group>"; };
+		9670F9895646BF4DCDE3836E /* UTF8Helper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UTF8Helper.cpp; sourceTree = "<group>"; };
+		974A2B0D8216970149A18186 /* trie.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = trie.cc; sourceTree = "<group>"; };
+		99B43CB628378BDBF0D7BEFB /* intrin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = intrin.h; sourceTree = "<group>"; };
+		99EB601D6468981811CCD064 /* MemoryMappedFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryMappedFile.h; sourceTree = "<group>"; };
+		9A350A73A84D81BAD0EEB4BE /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		9A952655889C4D1F43AABF2E /* KeyboardSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettings.swift; sourceTree = "<group>"; };
+		9AF0C3EEAD3321ACBE0EA487 /* EngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTests.swift; sourceTree = "<group>"; };
+		A2197B3F9859055CA01CA5C0 /* Segmentation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Segmentation.cpp; sourceTree = "<group>"; };
+		A2269D347B1A740A9958871D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A26C396CCF60573D196441C2 /* DartsDict.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DartsDict.hpp; sourceTree = "<group>"; };
+		A3DD37A159BB3E0F66910564 /* Common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Common.hpp; sourceTree = "<group>"; };
+		A40F970664CBA5518F402FB9 /* writer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		A43CB182836E15E7608BBD16 /* Jianfan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Jianfan.entitlements; sourceTree = "<group>"; };
+		A4B3B91A535D9573FE6B4E9D /* VariantAnnotator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VariantAnnotator.h; sourceTree = "<group>"; };
+		A949121CC2A2E3FBA1490A69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AF6A3BE6CD7CAE45639D8F36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AF72473C5D9D0160C60E74CF /* tail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tail.h; sourceTree = "<group>"; };
+		AFCF9C94ECB5E5B59076A880 /* PhraseReplacementMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PhraseReplacementMap.cpp; sourceTree = "<group>"; };
+		AFD78A98001D29BF5916E6C7 /* TextDict.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextDict.cpp; sourceTree = "<group>"; };
+		B06675873112F87FBCEDA23A /* MarisaDict.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MarisaDict.cpp; sourceTree = "<group>"; };
+		B382172934B0CCC03320B8ED /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		B54EB798FCCBA0CDBD19BD68 /* ByteBlockBackedDictionary.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ByteBlockBackedDictionary.cpp; sourceTree = "<group>"; };
+		B5895886CF08A42E3C283F2A /* entry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entry.h; sourceTree = "<group>"; };
+		B835B97D9118ABCB201B1608 /* .clang-format */ = {isa = PBXFileReference; path = ".clang-format"; sourceTree = "<group>"; };
+		B92C72F2B9368F047EA4F20E /* writer.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = writer.cc; sourceTree = "<group>"; };
+		B976B90591B0089E83F6857E /* SerializedValues.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SerializedValues.hpp; sourceTree = "<group>"; };
+		B9EB507F3760E149A29D88AA /* MarisaDict.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MarisaDict.hpp; sourceTree = "<group>"; };
+		BE6936EC2BECB62B3CFCCA75 /* history.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = history.h; sourceTree = "<group>"; };
+		BEFB473D2A30AE25C482170E /* EngineBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = EngineBridge.mm; sourceTree = "<group>"; };
+		BF01718ACABC7441AB78CBEA /* tail.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tail.cc; sourceTree = "<group>"; };
+		BF3BE864A063D18D5B26EDC5 /* Mandarin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mandarin.h; sourceTree = "<group>"; };
+		C0B9E8A3425878CCDFE3CA41 /* EngineBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngineBridge.h; sourceTree = "<group>"; };
+		C63579EC9B3EF61ED6F100F5 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		C7EBFB6C212ACC1532ABF05A /* flat-vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "flat-vector.h"; sourceTree = "<group>"; };
+		C8AAF1D587B6CDB22DBCA6B2 /* bit-vector.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "bit-vector.cc"; sourceTree = "<group>"; };
+		CCE27E13CC8F42C34FC0C195 /* rank-index.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rank-index.h"; sourceTree = "<group>"; };
+		CCF9B42C0030533E37865748 /* Conversion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Conversion.cpp; sourceTree = "<group>"; };
+		CD45732C68462D7A159224F1 /* JianfanKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JianfanKeyboard.entitlements; sourceTree = "<group>"; };
+		CE4F7537900924FAB35F0CE6 /* DictEntry.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DictEntry.hpp; sourceTree = "<group>"; };
+		CF9E09772BE9901262C12743 /* Dict.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Dict.hpp; sourceTree = "<group>"; };
+		D1858CC544A3903FE17B179D /* Dict.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dict.cpp; sourceTree = "<group>"; };
+		D37104FDCF09206E7B46FD06 /* Converter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Converter.hpp; sourceTree = "<group>"; };
+		D37ED3D0FE93CA911E02A85A /* UTF8StringSlice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UTF8StringSlice.cpp; sourceTree = "<group>"; };
+		D85D253A7691D7CAF7351764 /* LexiconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconViewController.swift; sourceTree = "<group>"; };
+		DDD43C1FF654839F2E48B762 /* DictGroup.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DictGroup.hpp; sourceTree = "<group>"; };
+		DED7B687C712A7F3D5256B78 /* state.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = state.h; sourceTree = "<group>"; };
+		E2DEFF78FB5FE75F865B73B8 /* algorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = algorithm.h; sourceTree = "<group>"; };
+		E9C9451A1629F28B03586ACF /* ParselessPhraseDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParselessPhraseDB.h; sourceTree = "<group>"; };
+		EA15E34A049D4D97B03E52F0 /* UserOverrideModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UserOverrideModel.cpp; sourceTree = "<group>"; };
+		EA4C259F08D8CB8F15918048 /* Segments.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Segments.hpp; sourceTree = "<group>"; };
+		EB01B30A0A4D140905D7B4D6 /* UserPhrasesLM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPhrasesLM.h; sourceTree = "<group>"; };
+		ED17C06F7CCAAF81C93B510B /* McBopomofoLM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = McBopomofoLM.h; sourceTree = "<group>"; };
+		F2C63828C24C2EF8DD73156A /* BinaryDict.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BinaryDict.hpp; sourceTree = "<group>"; };
+		F4BA94AF359C969B340C270D /* .gitignore */ = {isa = PBXFileReference; path = .gitignore; sourceTree = "<group>"; };
+		F4D274454DD0E05AB56AD7EB /* io.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = io.h; sourceTree = "<group>"; };
+		F88CB44A1C9AB1108D5363C9 /* Exception.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Exception.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4DACC3CEE48730DF2A4A784E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DD4570422617807C232C0D5 /* JianfanUserData in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A8480221D2E899C034B7D55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C6D600B1754EB6A4C6A6DAC /* JianfanUserData in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		025897A83EBA0FBFDF3C3C11 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				CE92CFE2F50338E66A9BB853 /* Engine */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		05CCD285BCE6E6C68FDC44B2 /* io */ = {
+			isa = PBXGroup;
+			children = (
+				256080C6AA426BDC56B80803 /* mapper.cc */,
+				93D05A396124324F0B62F4FA /* mapper.h */,
+				19C5D2B212B74328FD6FA8D5 /* reader.cc */,
+				4387B0C7CD37295455DAECF6 /* reader.h */,
+				B92C72F2B9368F047EA4F20E /* writer.cc */,
+				A40F970664CBA5518F402FB9 /* writer.h */,
+			);
+			path = io;
+			sourceTree = "<group>";
+		};
+		0D424FDFE5FDA9C2FECAF2A9 /* gramambular2 */ = {
+			isa = PBXGroup;
+			children = (
+				850A13543C176D2FDC1D74B2 /* language_model.h */,
+				215044377C17AE3B5E254766 /* reading_grid.cpp */,
+				6049D415038571F5322C67E1 /* reading_grid.h */,
+				AF6A3BE6CD7CAE45639D8F36 /* README.md */,
+			);
+			path = gramambular2;
+			sourceTree = "<group>";
+		};
+		0F4D9BDB29C42CA38088E0F4 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				23F3815EA881B0DAF7A4A35E /* Session.cpp */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		10E913F17B46926301BFC9E8 /* McBopomofo */ = {
+			isa = PBXGroup;
+			children = (
+				025897A83EBA0FBFDF3C3C11 /* Source */,
+			);
+			path = McBopomofo;
+			sourceTree = "<group>";
+		};
+		137E2858747111A35E69E2B0 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				47E9B89F6AAD2BE08FD983CB /* JianfanUserData */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		14844C05712F3ACEF86CE0CD /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				B5F3D95A68917317AF6026E9 /* Dependencies */,
+				10E913F17B46926301BFC9E8 /* McBopomofo */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		189CE507F5965CFA51A8AFF7 /* marisa */ = {
+			isa = PBXGroup;
+			children = (
+				0E4E9E8BCB3195F95608026C /* agent.cc */,
+				69BA16D3FECB1107463BF7D1 /* keyset.cc */,
+				974A2B0D8216970149A18186 /* trie.cc */,
+				C73DC444EEA4270250501DD4 /* grimoire */,
+			);
+			path = marisa;
+			sourceTree = "<group>";
+		};
+		1CC71A709A696A8EAE496C60 /* trie */ = {
+			isa = PBXGroup;
+			children = (
+				5C0F442333249585884A9637 /* cache.h */,
+				9A350A73A84D81BAD0EEB4BE /* config.h */,
+				B5895886CF08A42E3C283F2A /* entry.h */,
+				4D1D1CCA4DEF0D6FAF873C3F /* header.h */,
+				BE6936EC2BECB62B3CFCCA75 /* history.h */,
+				6CFE7766A04998763BDC702F /* key.h */,
+				337E0D5EFF8FA2799795E62D /* louds-trie.cc */,
+				7A7B3F94ABDAA3484D5D9D43 /* louds-trie.h */,
+				0E256376C00DC2D2A5D7ED96 /* range.h */,
+				DED7B687C712A7F3D5256B78 /* state.h */,
+				BF01718ACABC7441AB78CBEA /* tail.cc */,
+				AF72473C5D9D0160C60E74CF /* tail.h */,
+			);
+			path = trie;
+			sourceTree = "<group>";
+		};
+		1E92B4A9D75551F56D3A5E0A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9AF0C3EEAD3321ACBE0EA487 /* EngineTests.swift */,
+				5804F8F568DDB28B628D17D7 /* KeyboardModelTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		29E431AC0228C94D1FEDD7B3 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				19466595688F0AA6A0CEADD1 /* Bridging.h */,
+				C0B9E8A3425878CCDFE3CA41 /* EngineBridge.h */,
+				BEFB473D2A30AE25C482170E /* EngineBridge.mm */,
+				265F935786CCFFDF0F7D69EA /* KeyboardModel.swift */,
+				9A952655889C4D1F43AABF2E /* KeyboardSettings.swift */,
+				C63579EC9B3EF61ED6F100F5 /* KeyboardView.swift */,
+				4F7E75BDB3AD90EBDD8E204C /* Resources */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		32047D15B4F93019C1959EA8 /* OpenCC */ = {
+			isa = PBXGroup;
+			children = (
+				F5960FB80E811E6710E9FC9F /* deps */,
+				EE8DA69BB704B93B65460DB4 /* src */,
+			);
+			path = OpenCC;
+			sourceTree = "<group>";
+		};
+		4F7E75BDB3AD90EBDD8E204C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				24644FB466CC5AD6DACECB7A /* InfoPlist.strings */,
+				B946B4DCCA14B165FDF371FD /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		60332712D490D6AAF4F98F8C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				916743883D652E335DC17A0B /* AppDelegate.swift */,
+				4C988E101281CADDBB78C9F8 /* Assets.xcassets */,
+				91ADFCC0CF0912292EFB62C9 /* ContentViewController.swift */,
+				A949121CC2A2E3FBA1490A69 /* Info.plist */,
+				A43CB182836E15E7608BBD16 /* Jianfan.entitlements */,
+				D85D253A7691D7CAF7351764 /* LexiconViewController.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		771F5646B11B16CA0E90D13A /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				189CE507F5965CFA51A8AFF7 /* marisa */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		8363E811952D144646CDEA36 /* SystemUITests */ = {
+			isa = PBXGroup;
+			children = (
+				82780FB3BF3AA2B4F8CF55FA /* SystemKeyboardTests.swift */,
+			);
+			path = SystemUITests;
+			sourceTree = "<group>";
+		};
+		910255EE06A3BBDFE82B498E /* vector */ = {
+			isa = PBXGroup;
+			children = (
+				C8AAF1D587B6CDB22DBCA6B2 /* bit-vector.cc */,
+				91336B1454D5D170FF2D0DC3 /* bit-vector.h */,
+				C7EBFB6C212ACC1532ABF05A /* flat-vector.h */,
+				0C3111C5009E0DB8C8690C03 /* pop-count.h */,
+				CCE27E13CC8F42C34FC0C195 /* rank-index.h */,
+				78D50CA6D85B8762A1CEECDA /* vector.h */,
+			);
+			path = vector;
+			sourceTree = "<group>";
+		};
+		93146D9FB75B8932CC8B71A7 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				8EFF15ED6A4881F3DDD96F6E /* Info.plist */,
+				CD45732C68462D7A159224F1 /* JianfanKeyboard.entitlements */,
+				548F8677517B2C1B099ECA3C /* KeyboardViewController.swift */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		934D5905AE7685CEF3F8A052 /* SwiftyOpenCC */ = {
+			isa = PBXGroup;
+			children = (
+				32047D15B4F93019C1959EA8 /* OpenCC */,
+			);
+			path = SwiftyOpenCC;
+			sourceTree = "<group>";
+		};
+		9EB5890808139C0634550549 /* marisa-0.2.6 */ = {
+			isa = PBXGroup;
+			children = (
+				771F5646B11B16CA0E90D13A /* lib */,
+			);
+			path = "marisa-0.2.6";
+			sourceTree = "<group>";
+		};
+		A74A04C066BA593304232D11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5C4A1BC86C1F3FE4EBB13837 /* Jianfan.app */,
+				6719B7BEA6E63228607B3543 /* JianfanKeyboard.appex */,
+				6E0BC981850EA953D64AB555 /* JianfanSystemUITests.xctest */,
+				47E91066E0B8C8D481152DAA /* JianfanTests.xctest */,
+				5AC4AA2AFA57A419FFA313EB /* JianfanUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5F3D95A68917317AF6026E9 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				934D5905AE7685CEF3F8A052 /* SwiftyOpenCC */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		C73DC444EEA4270250501DD4 /* grimoire */ = {
+			isa = PBXGroup;
+			children = (
+				E2DEFF78FB5FE75F865B73B8 /* algorithm.h */,
+				99B43CB628378BDBF0D7BEFB /* intrin.h */,
+				F4D274454DD0E05AB56AD7EB /* io.h */,
+				20862BFD129576FA78A2E836 /* trie.h */,
+				7BC6E7D1D1560FE35F30DD8B /* vector.h */,
+				EB01266519019481160F74C6 /* algorithm */,
+				05CCD285BCE6E6C68FDC44B2 /* io */,
+				1CC71A709A696A8EAE496C60 /* trie */,
+				910255EE06A3BBDFE82B498E /* vector */,
+			);
+			path = grimoire;
+			sourceTree = "<group>";
+		};
+		CE92CFE2F50338E66A9BB853 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				B835B97D9118ABCB201B1608 /* .clang-format */,
+				F4BA94AF359C969B340C270D /* .gitignore */,
+				7FB9EF4F815CCC0070601BAE /* AssociatedPhrasesV2.cpp */,
+				907B6630F4F3DBF75C4808AA /* AssociatedPhrasesV2.h */,
+				B54EB798FCCBA0CDBD19BD68 /* ByteBlockBackedDictionary.cpp */,
+				7D3145857BA13A98C648FDC9 /* ByteBlockBackedDictionary.h */,
+				70EEF34DA868E2521C10EBD5 /* McBopomofoLM.cpp */,
+				ED17C06F7CCAAF81C93B510B /* McBopomofoLM.h */,
+				022B74355D66CC6D7A7428BB /* MemoryMappedFile.cpp */,
+				99EB601D6468981811CCD064 /* MemoryMappedFile.h */,
+				6F48DD66632CBF0CCB431936 /* ParselessLM.cpp */,
+				212B113689E890BD4F3314A4 /* ParselessLM.h */,
+				2DCC93CA7EACC9355ECAA207 /* ParselessPhraseDB.cpp */,
+				E9C9451A1629F28B03586ACF /* ParselessPhraseDB.h */,
+				AFCF9C94ECB5E5B59076A880 /* PhraseReplacementMap.cpp */,
+				410A9199EC34BBD5ABD6AC64 /* PhraseReplacementMap.h */,
+				EA15E34A049D4D97B03E52F0 /* UserOverrideModel.cpp */,
+				5FC5EB10E03FCF899B55D8FB /* UserOverrideModel.h */,
+				246FEABA46CA6D829A386D08 /* UserPhrasesLM.cpp */,
+				EB01B30A0A4D140905D7B4D6 /* UserPhrasesLM.h */,
+				9670F9895646BF4DCDE3836E /* UTF8Helper.cpp */,
+				4D62026E77A5910EB84440E0 /* UTF8Helper.h */,
+				399FA8882693FDF6B8D0A1A1 /* VariantAnnotator.cpp */,
+				A4B3B91A535D9573FE6B4E9D /* VariantAnnotator.h */,
+				0D424FDFE5FDA9C2FECAF2A9 /* gramambular2 */,
+				EBCCE411FD2CE38339C62B0F /* Mandarin */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		E733FF2687D579E111D91BE9 /* input_method */ = {
+			isa = PBXGroup;
+			children = (
+				0F4D9BDB29C42CA38088E0F4 /* core */,
+				14844C05712F3ACEF86CE0CD /* Vendor */,
+			);
+			name = input_method;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		EAACB39F6AAFF4E3556EB66D /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				3A3151BAD1787BF7D6D13493 /* TypingUITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		EB01266519019481160F74C6 /* algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				2D5BE40314E174B5BDF2BEF3 /* sort.h */,
+			);
+			path = algorithm;
+			sourceTree = "<group>";
+		};
+		EBCCE411FD2CE38339C62B0F /* Mandarin */ = {
+			isa = PBXGroup;
+			children = (
+				68EC724E57A3147BBD38A13A /* Mandarin.cpp */,
+				BF3BE864A063D18D5B26EDC5 /* Mandarin.h */,
+			);
+			path = Mandarin;
+			sourceTree = "<group>";
+		};
+		EE8DA69BB704B93B65460DB4 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				959CFE87AAA419E1172095AB /* BinaryDict.cpp */,
+				F2C63828C24C2EF8DD73156A /* BinaryDict.hpp */,
+				0D0C7F66804D8209C2DADF5E /* CmdLineOutput.hpp */,
+				A3DD37A159BB3E0F66910564 /* Common.hpp */,
+				CCF9B42C0030533E37865748 /* Conversion.cpp */,
+				1ABC8978285653CE26AC8BE4 /* Conversion.hpp */,
+				00484F150B2B844675E0C506 /* ConversionChain.cpp */,
+				80FAE7D55B5710F45D941096 /* ConversionChain.hpp */,
+				4BE6FFC34C77ED9ECA87DF1C /* Converter.cpp */,
+				D37104FDCF09206E7B46FD06 /* Converter.hpp */,
+				774B99F7C16E708D21174D71 /* DartsDict.cpp */,
+				A26C396CCF60573D196441C2 /* DartsDict.hpp */,
+				D1858CC544A3903FE17B179D /* Dict.cpp */,
+				CF9E09772BE9901262C12743 /* Dict.hpp */,
+				6AF14778361A7E90242490ED /* DictConverter.cpp */,
+				378A0C9AB1B829B4E4ADCAE7 /* DictConverter.hpp */,
+				7A83C66DD87225D60E90272E /* DictEntry.cpp */,
+				CE4F7537900924FAB35F0CE6 /* DictEntry.hpp */,
+				35F81A1F47255048B4274B58 /* DictGroup.cpp */,
+				DDD43C1FF654839F2E48B762 /* DictGroup.hpp */,
+				F88CB44A1C9AB1108D5363C9 /* Exception.hpp */,
+				629A810F95D3083A60DC6C94 /* Export.hpp */,
+				11BCF97FBDE43338502AF5A6 /* Lexicon.cpp */,
+				81B23154BF05EBA9665FE998 /* Lexicon.hpp */,
+				B06675873112F87FBCEDA23A /* MarisaDict.cpp */,
+				B9EB507F3760E149A29D88AA /* MarisaDict.hpp */,
+				86073C57A73990465EA2B08F /* MaxMatchSegmentation.cpp */,
+				4467BDA76EDDB9DCDA7BC3D7 /* MaxMatchSegmentation.hpp */,
+				6AF7BF2748C363011A79C938 /* Optional.hpp */,
+				A2197B3F9859055CA01CA5C0 /* Segmentation.cpp */,
+				0AB124DB79A690588EBC1D5D /* Segmentation.hpp */,
+				EA4C259F08D8CB8F15918048 /* Segments.hpp */,
+				3AD7E1E09523A77A9B9AF573 /* SerializableDict.hpp */,
+				18A35ADE75A701326C11CF6C /* SerializedValues.cpp */,
+				B976B90591B0089E83F6857E /* SerializedValues.hpp */,
+				AFD78A98001D29BF5916E6C7 /* TextDict.cpp */,
+				9621571E5711718FBC8FE247 /* TextDict.hpp */,
+				D37ED3D0FE93CA911E02A85A /* UTF8StringSlice.cpp */,
+				6536C92A58B097C4A49504C5 /* UTF8StringSlice.hpp */,
+				847C29B8CE322EE7CF652B38 /* UTF8Util.cpp */,
+				22420BE75D85BBCD2C523DE2 /* UTF8Util.hpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		F5960FB80E811E6710E9FC9F /* deps */ = {
+			isa = PBXGroup;
+			children = (
+				9EB5890808139C0634550549 /* marisa-0.2.6 */,
+			);
+			path = deps;
+			sourceTree = "<group>";
+		};
+		FA6DB585C098ACF21696F7DD = {
+			isa = PBXGroup;
+			children = (
+				8512BB443AD6424E9CC0006D /* Dictionaries */,
+				5F4BA7BB0D3BC7AAA6BDE04D /* PrivacyInfo.xcprivacy */,
+				60332712D490D6AAF4F98F8C /* App */,
+				E733FF2687D579E111D91BE9 /* input_method */,
+				93146D9FB75B8932CC8B71A7 /* Keyboard */,
+				137E2858747111A35E69E2B0 /* Packages */,
+				29E431AC0228C94D1FEDD7B3 /* Shared */,
+				8363E811952D144646CDEA36 /* SystemUITests */,
+				1E92B4A9D75551F56D3A5E0A /* Tests */,
+				EAACB39F6AAFF4E3556EB66D /* UITests */,
+				A74A04C066BA593304232D11 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1182DD65CC2577A6A9D3A7EF /* JianfanUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02E6C0E27C7976FD1FAF8923 /* Build configuration list for PBXNativeTarget "JianfanUITests" */;
+			buildPhases = (
+				47B4BAD75F1DFA65F8A29DD4 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4AFEC793DD53B6470CCE55B6 /* PBXTargetDependency */,
+			);
+			name = JianfanUITests;
+			packageProductDependencies = (
+			);
+			productName = JianfanUITests;
+			productReference = 5AC4AA2AFA57A419FFA313EB /* JianfanUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		1C70A6B2ACE298773284775F /* JianfanSystemUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12A03F391EF46BF69826B235 /* Build configuration list for PBXNativeTarget "JianfanSystemUITests" */;
+			buildPhases = (
+				6390805665C817FE66786785 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				79F1224649A135A494359EA2 /* PBXTargetDependency */,
+			);
+			name = JianfanSystemUITests;
+			packageProductDependencies = (
+			);
+			productName = JianfanSystemUITests;
+			productReference = 6E0BC981850EA953D64AB555 /* JianfanSystemUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		81E6C3281218864ABC479BA8 /* Jianfan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 534B035D36EE57C5871094BF /* Build configuration list for PBXNativeTarget "Jianfan" */;
+			buildPhases = (
+				6EAB1FB1DEF57CEA1E6F3C35 /* Sources */,
+				C7201F7B72496C6B85AAEF1B /* Resources */,
+				4DACC3CEE48730DF2A4A784E /* Frameworks */,
+				C7E442B6869D7D40A74D7B34 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				35B1929FC8F6BFB001CEEE41 /* PBXTargetDependency */,
+			);
+			name = Jianfan;
+			packageProductDependencies = (
+				617C6D9B10233DC4F6350035 /* JianfanUserData */,
+			);
+			productName = Jianfan;
+			productReference = 5C4A1BC86C1F3FE4EBB13837 /* Jianfan.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B7A7F842D72B22A33EB9EBD5 /* JianfanKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1DB5606F07980531194A493 /* Build configuration list for PBXNativeTarget "JianfanKeyboard" */;
+			buildPhases = (
+				0F8869DC917B3D3C7E1382E2 /* Sources */,
+				BBA114C8CE3E97838D7D3F71 /* Resources */,
+				5A8480221D2E899C034B7D55 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JianfanKeyboard;
+			packageProductDependencies = (
+				B12132C8DB43C64D45820375 /* JianfanUserData */,
+			);
+			productName = JianfanKeyboard;
+			productReference = 6719B7BEA6E63228607B3543 /* JianfanKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		FF8A09C3AA0888C138E40827 /* JianfanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AED07CBC7F92986ECFEE7089 /* Build configuration list for PBXNativeTarget "JianfanTests" */;
+			buildPhases = (
+				C75526451AD50FAE0A3ADCB4 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEE2CBD58E375192D7AB5D90 /* PBXTargetDependency */,
+			);
+			name = JianfanTests;
+			packageProductDependencies = (
+			);
+			productName = JianfanTests;
+			productReference = 47E91066E0B8C8D481152DAA /* JianfanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF4E9343EB6AF66DCCBD173B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					1182DD65CC2577A6A9D3A7EF = {
+						ProvisioningStyle = Automatic;
+						TestTargetID = 81E6C3281218864ABC479BA8;
+					};
+					1C70A6B2ACE298773284775F = {
+						ProvisioningStyle = Automatic;
+						TestTargetID = 81E6C3281218864ABC479BA8;
+					};
+					81E6C3281218864ABC479BA8 = {
+						ProvisioningStyle = Automatic;
+					};
+					B7A7F842D72B22A33EB9EBD5 = {
+						ProvisioningStyle = Automatic;
+					};
+					FF8A09C3AA0888C138E40827 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F85E057B2F2856D66D155630 /* Build configuration list for PBXProject "Jianfan" */;
+			developmentRegion = "zh-Hant";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				"zh-Hans",
+				"zh-Hant",
+			);
+			mainGroup = FA6DB585C098ACF21696F7DD;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				EB44AF971EDF2CF25350E203 /* XCLocalSwiftPackageReference "../../Vendor/McBopomofo/Packages/JianfanUserData" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A74A04C066BA593304232D11 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81E6C3281218864ABC479BA8 /* Jianfan */,
+				B7A7F842D72B22A33EB9EBD5 /* JianfanKeyboard */,
+				FF8A09C3AA0888C138E40827 /* JianfanTests */,
+				1182DD65CC2577A6A9D3A7EF /* JianfanUITests */,
+				1C70A6B2ACE298773284775F /* JianfanSystemUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BBA114C8CE3E97838D7D3F71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C234F9091831EFFB24F5914F /* Dictionaries in Resources */,
+				B7A7B31DC5DEBCA204BFFDC9 /* InfoPlist.strings in Resources */,
+				484263236C5B0BA4A6BEE75B /* Localizable.strings in Resources */,
+				E2470D0FB3C283D7A0266218 /* PrivacyInfo.xcprivacy in Resources */,
+				35EE25276C513AAF93DED5D4 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7201F7B72496C6B85AAEF1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3145A70DDC55A3D6CF06AF8A /* Assets.xcassets in Resources */,
+				62AE9DDB61E247D8187ACBD7 /* Dictionaries in Resources */,
+				38EEC3098B629430D844316E /* InfoPlist.strings in Resources */,
+				2CA99FCA488453E58DEA6DF7 /* Localizable.strings in Resources */,
+				E01CF7E76FD5FDA206AFE33F /* PrivacyInfo.xcprivacy in Resources */,
+				EED3E9FE4433E9AAE69CC577 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0F8869DC917B3D3C7E1382E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84EE02A776AE706474521F3C /* AssociatedPhrasesV2.cpp in Sources */,
+				69F34AC2B43E8FAD435E00FB /* BinaryDict.cpp in Sources */,
+				A5E9E36FF86817DC342A5FFD /* ByteBlockBackedDictionary.cpp in Sources */,
+				78D28AAF7E315D77BAA3E990 /* Conversion.cpp in Sources */,
+				FBAD2E77FC513E0AD6D96A0E /* ConversionChain.cpp in Sources */,
+				3A59E28330BA1C5A93B43C29 /* Converter.cpp in Sources */,
+				DA62AC359DC70A18C180A1E7 /* DartsDict.cpp in Sources */,
+				9DA6B69F38BC94FC242DE40B /* Dict.cpp in Sources */,
+				6F1871283D37E6BD1A22EAD6 /* DictConverter.cpp in Sources */,
+				D5A44F3702CFCC3B834CE573 /* DictEntry.cpp in Sources */,
+				8D686D11A11C9E1270B4D50E /* DictGroup.cpp in Sources */,
+				8F8B482D2D66585413BE4785 /* EngineBridge.mm in Sources */,
+				970D983A4E2C2057A9EE756D /* KeyboardModel.swift in Sources */,
+				F594A0E5EF6227A3148FAFDC /* KeyboardSettings.swift in Sources */,
+				82253ACBE963A8D03705A306 /* KeyboardView.swift in Sources */,
+				E3399D0FEF598F38D7A6A55F /* KeyboardViewController.swift in Sources */,
+				1142C00208841BE3379AC872 /* Lexicon.cpp in Sources */,
+				72E641439E679938EB87800D /* Mandarin.cpp in Sources */,
+				5D6B4280BFAB8C8A2C79CE5E /* MarisaDict.cpp in Sources */,
+				9B240C2884676CEEC4239A5B /* MaxMatchSegmentation.cpp in Sources */,
+				1A00E63D823430B4C8E60E48 /* McBopomofoLM.cpp in Sources */,
+				BFC34BD0A6491D965F6D2AF1 /* MemoryMappedFile.cpp in Sources */,
+				45D9F4E2A68C4218A20A9499 /* ParselessLM.cpp in Sources */,
+				3DC5ADB545AC31C2DDDA47F3 /* ParselessPhraseDB.cpp in Sources */,
+				C9CD2BCAF78644526080E715 /* PhraseReplacementMap.cpp in Sources */,
+				C01F52CCBD5E53A83EEFAF2A /* Segmentation.cpp in Sources */,
+				4762DCB07AA7BC13AC7FA601 /* SerializedValues.cpp in Sources */,
+				2B68754B702A6AEDC5EF27DB /* Session.cpp in Sources */,
+				F8D0CF28E78A923CE962FDEB /* TextDict.cpp in Sources */,
+				D187E0564BFAC16F7EE38DC4 /* UTF8Helper.cpp in Sources */,
+				09308D8EF767EC59F2DFBB55 /* UTF8StringSlice.cpp in Sources */,
+				C23EF321B9B69A5F50543925 /* UTF8Util.cpp in Sources */,
+				C9E373036DD5D61DEDE290A7 /* UserOverrideModel.cpp in Sources */,
+				15850434FEE8B32D7A05386F /* UserPhrasesLM.cpp in Sources */,
+				3E296A07C471DF0D3D1F13AE /* VariantAnnotator.cpp in Sources */,
+				C6C5EA050997555DD5D635C1 /* agent.cc in Sources */,
+				10E6CB2ABFBB98E2919B5D93 /* bit-vector.cc in Sources */,
+				C9C85EB0680A71A2C7F5A52C /* keyset.cc in Sources */,
+				FDE446677ABD23CC17F318ED /* louds-trie.cc in Sources */,
+				2EF7A46474B19B05E32BEB67 /* mapper.cc in Sources */,
+				A53B304F0ECF79E8EDECF8C4 /* reader.cc in Sources */,
+				3E0D779D1913FE36395CAD23 /* reading_grid.cpp in Sources */,
+				5280752D1FE14420A1F59FFD /* tail.cc in Sources */,
+				2D83FC6ECB48391B6F0640F5 /* trie.cc in Sources */,
+				98AAE9BEBCE69AE62AB095DC /* writer.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47B4BAD75F1DFA65F8A29DD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5CC475BCBF8A10D651E444B /* TypingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6390805665C817FE66786785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4839401590B62DBE40EB9D7 /* SystemKeyboardTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EAB1FB1DEF57CEA1E6F3C35 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7073F3332EAFB12BF13CAB36 /* AppDelegate.swift in Sources */,
+				34B00068D80A955777E05596 /* AssociatedPhrasesV2.cpp in Sources */,
+				95CD477B45289E90D37B7562 /* BinaryDict.cpp in Sources */,
+				230CB83F7D12AEAACD64370A /* ByteBlockBackedDictionary.cpp in Sources */,
+				20464C2148DC80D905285DE6 /* ContentViewController.swift in Sources */,
+				2EE27B8C2B28814CF10D184F /* Conversion.cpp in Sources */,
+				F6E3BE499C3A743FE3B7D6E6 /* ConversionChain.cpp in Sources */,
+				52A5134575EA44B51BA73C19 /* Converter.cpp in Sources */,
+				9654E436B4DD870EB99761D1 /* DartsDict.cpp in Sources */,
+				D0323ED315FF739968D229C5 /* Dict.cpp in Sources */,
+				086BF27C9C78E61ACE8CB992 /* DictConverter.cpp in Sources */,
+				D780988783445E79A15DFDC9 /* DictEntry.cpp in Sources */,
+				A985C2950B6A8EE5FCFA6559 /* DictGroup.cpp in Sources */,
+				24B03E3A58A1183FC9633267 /* EngineBridge.mm in Sources */,
+				B61E389BF2E75DEB83531261 /* KeyboardModel.swift in Sources */,
+				A3F92C8FF839BCF2AFC7E6FF /* KeyboardSettings.swift in Sources */,
+				F8F1172FB22CC17774F9F0D0 /* KeyboardView.swift in Sources */,
+				B248C4C48245727741B326B3 /* Lexicon.cpp in Sources */,
+				6474E8CDB1D11D4EEC154821 /* LexiconViewController.swift in Sources */,
+				38E619D4298DE53428B51CFD /* Mandarin.cpp in Sources */,
+				62390EC9DB5DAE96A544D505 /* MarisaDict.cpp in Sources */,
+				0CD3A98C49785DE42255EF64 /* MaxMatchSegmentation.cpp in Sources */,
+				173617D858BA9B92D8F2A26A /* McBopomofoLM.cpp in Sources */,
+				F72B23009A9616C0F9D93FFC /* MemoryMappedFile.cpp in Sources */,
+				8B5C27FC90154006E8617969 /* ParselessLM.cpp in Sources */,
+				BE8D5D691115F70643B32934 /* ParselessPhraseDB.cpp in Sources */,
+				AF566A88838359DBE2B7B950 /* PhraseReplacementMap.cpp in Sources */,
+				997AEAA18296370DE4882DBA /* Segmentation.cpp in Sources */,
+				2EF59418E900A041A7C60C0F /* SerializedValues.cpp in Sources */,
+				42193495599647AC208A82C8 /* Session.cpp in Sources */,
+				20F8624E0C6BAB7FF35BF5EF /* TextDict.cpp in Sources */,
+				8283D2952681F5EAE0A0A35D /* UTF8Helper.cpp in Sources */,
+				830125901464DCE22F06ED75 /* UTF8StringSlice.cpp in Sources */,
+				CBE5748F00D999E878C325C1 /* UTF8Util.cpp in Sources */,
+				3E021F721200AC43CBCA9BC3 /* UserOverrideModel.cpp in Sources */,
+				CBC30245C481A2E20986B1D2 /* UserPhrasesLM.cpp in Sources */,
+				2FF8468E7FB9C07DD5283020 /* VariantAnnotator.cpp in Sources */,
+				2BDA120DE8FC7E312996D721 /* agent.cc in Sources */,
+				2F9ABB84715DA36190CF1AED /* bit-vector.cc in Sources */,
+				4568312C1DB0C2818EE45BBB /* keyset.cc in Sources */,
+				C5976E3B24C7FA5735BD9BFA /* louds-trie.cc in Sources */,
+				806390B387F553535ABD9B57 /* mapper.cc in Sources */,
+				0B54593248902BEF965CB645 /* reader.cc in Sources */,
+				FECD7E1B71418A8F25828282 /* reading_grid.cpp in Sources */,
+				377E3EF614D67B68207F5504 /* tail.cc in Sources */,
+				42882923FD6247ECDFC6455F /* trie.cc in Sources */,
+				986F40612F5899C0E5030D7B /* writer.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C75526451AD50FAE0A3ADCB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48594B607DE1C12A5384150E /* EngineTests.swift in Sources */,
+				4F6715CE1204C8018B63F9B5 /* KeyboardModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		35B1929FC8F6BFB001CEEE41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7A7F842D72B22A33EB9EBD5 /* JianfanKeyboard */;
+			targetProxy = 622BF0C5DA37FFF7B8F4C85D /* PBXContainerItemProxy */;
+		};
+		4AFEC793DD53B6470CCE55B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81E6C3281218864ABC479BA8 /* Jianfan */;
+			targetProxy = 2FB91779BDE8CBAEC50A424D /* PBXContainerItemProxy */;
+		};
+		79F1224649A135A494359EA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81E6C3281218864ABC479BA8 /* Jianfan */;
+			targetProxy = 71C970DC9A8CAF869073E6E2 /* PBXContainerItemProxy */;
+		};
+		CEE2CBD58E375192D7AB5D90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81E6C3281218864ABC479BA8 /* Jianfan */;
+			targetProxy = 1F59873FD4761A94BCE30FAD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		24644FB466CC5AD6DACECB7A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4AB9700F63DE037BBE857ADD /* en */,
+				66AD06AAFE33B08D9E86AE7E /* zh-Hans */,
+				A2269D347B1A740A9958871D /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B946B4DCCA14B165FDF371FD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BE15774B6A3671E9D10CD75 /* en */,
+				B382172934B0CCC03320B8ED /* zh-Hans */,
+				536F8479CE16A03BF0185711 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		07E6AFD1C1E1ADD956FC3A5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.JianfanSystemUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jianfan;
+			};
+			name = Release;
+		};
+		080ABD39706E8C33204DEB00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 4;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					Opencc_BUILT_AS_STATIC,
+					ENABLE_DARTS,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../core",
+					"$(SRCROOT)/../../Vendor/McBopomofo/Source/Engine",
+					"$(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/src",
+					"$(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/deps/darts-clone",
+					"$(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/deps/marisa-0.2.6/include",
+					"$(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/deps/marisa-0.2.6/lib",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 0.3.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0C5BC8C2063F86B6567B5C67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.JianfanUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jianfan;
+			};
+			name = Debug;
+		};
+		0E4EB3D3C01BD634DCC5DA1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 4;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					Opencc_BUILT_AS_STATIC,
+					ENABLE_DARTS,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../core",
+					"$(SRCROOT)/../../Vendor/McBopomofo/Source/Engine",
+					"$(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/src",
+					"$(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/deps/darts-clone",
+					"$(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/deps/marisa-0.2.6/include",
+					"$(SRCROOT)/../../Vendor/Dependencies/SwiftyOpenCC/OpenCC/deps/marisa-0.2.6/lib",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 0.3.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		26CAB692C3AD1D86E5BAD22D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/Jianfan.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.zhuyin;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/Bridging.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		46ECC41B475BBD4B055F2D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Keyboard/JianfanKeyboard.entitlements;
+				INFOPLIST_FILE = Keyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.zhuyin.keyboard;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/Bridging.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6A62CF1ECAC8C661E035CC71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.JianfanTests;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/Bridging.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jianfan.app/Jianfan";
+			};
+			name = Release;
+		};
+		8A6374E4814FC64625A1FD52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/Jianfan.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.zhuyin;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/Bridging.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9D2EEC225BE3E19CF36032AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.JianfanSystemUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jianfan;
+			};
+			name = Debug;
+		};
+		CA8968153E7BFE497E9A25BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Keyboard/JianfanKeyboard.entitlements;
+				INFOPLIST_FILE = Keyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.zhuyin.keyboard;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/Bridging.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DA62A7BA466E736BC5F8498F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.JianfanUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jianfan;
+			};
+			name = Release;
+		};
+		DD70659CFF748938EA6E7DE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.allenpeng.jianfan.JianfanTests;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/Bridging.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jianfan.app/Jianfan";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		02E6C0E27C7976FD1FAF8923 /* Build configuration list for PBXNativeTarget "JianfanUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C5BC8C2063F86B6567B5C67 /* Debug */,
+				DA62A7BA466E736BC5F8498F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		12A03F391EF46BF69826B235 /* Build configuration list for PBXNativeTarget "JianfanSystemUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D2EEC225BE3E19CF36032AE /* Debug */,
+				07E6AFD1C1E1ADD956FC3A5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		534B035D36EE57C5871094BF /* Build configuration list for PBXNativeTarget "Jianfan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26CAB692C3AD1D86E5BAD22D /* Debug */,
+				8A6374E4814FC64625A1FD52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A1DB5606F07980531194A493 /* Build configuration list for PBXNativeTarget "JianfanKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46ECC41B475BBD4B055F2D1E /* Debug */,
+				CA8968153E7BFE497E9A25BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AED07CBC7F92986ECFEE7089 /* Build configuration list for PBXNativeTarget "JianfanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD70659CFF748938EA6E7DE2 /* Debug */,
+				6A62CF1ECAC8C661E035CC71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F85E057B2F2856D66D155630 /* Build configuration list for PBXProject "Jianfan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				080ABD39706E8C33204DEB00 /* Debug */,
+				0E4EB3D3C01BD634DCC5DA1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		EB44AF971EDF2CF25350E203 /* XCLocalSwiftPackageReference "../../Vendor/McBopomofo/Packages/JianfanUserData" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../Vendor/McBopomofo/Packages/JianfanUserData;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		617C6D9B10233DC4F6350035 /* JianfanUserData */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = JianfanUserData;
+		};
+		B12132C8DB43C64D45820375 /* JianfanUserData */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = JianfanUserData;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CF4E9343EB6AF66DCCBD173B /* Project object */;
+}

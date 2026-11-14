@@ -2,7 +2,11 @@
 
 使用標準注音大千鍵盤的中文輸入法，預設輸出簡體，可切換繁體。基於 McBopomofo 與 OpenCC 客製，注音解析、詞庫、選字記憶與聯想排序均在本機運作，無需帳戶或伺服器。
 
-目前 Mac 本機試用版為 **0.2.0，構建號 3**。Windows、iOS、GitHub 開源與公開發行依序開發；此安裝包供本機試用，使用本地 ad hoc 簽名。
+**Windows 0.3.0** 安裝包見 [公開下載](https://github.com/AllenPeng0209/jianfan-zhuyin/releases/tag/v0.3.0)，支援 Windows 11 x64 與 32 位元應用。原始碼採開源授權。
+
+Mac 本機試用版為 **0.2.0，構建號 3**，已完成離線個人化功能。Mac 本機安裝包使用 ad hoc 簽署，正式公開版本另需 Developer ID 簽署與公證。iOS 0.3 原生鍵盤、主程式與上架資料已備妥，App Store 版本仍待正式簽署、真機驗收及 Apple 審查，目前沒有一般使用者可安裝的 iOS 下載。
+
+各平台建置與目前發行狀態見 [Windows](docs/WINDOWS.md)、[iOS](docs/IOS.md) 與 [平台說明](docs/PLATFORMS.md)。隱私政策見 [PRIVACY.md](docs/PRIVACY.md)。
 
 ## 0.2 新增
 
@@ -53,8 +57,11 @@ JSON 匯入會先檢查整批資料，再合併及去重；錯誤資料不會部
 bash scripts/test-macos.sh
 swift test --package-path Vendor/McBopomofo/Packages/JianfanUserData --scratch-path build/UserDataTests
 cmake -S . -B build/EngineTests
-cmake --build build/EngineTests --target McBopomofoLMLibTest --parallel 4
+python3 scripts/generate-data.py
+cmake --build build/EngineTests --parallel 4
+ctest --test-dir build/EngineTests --output-on-failure
 bash scripts/build-local.sh
+bash scripts/test-ios.sh
 ```
 
 Mac 測試使用獨立開發輸入源、IMK 連線及每次新建的測試資料夾，並以兩個不同程序驗證選字保存與還原，不修改日常輸入法的資料。紀錄位於 `build/logs/`。

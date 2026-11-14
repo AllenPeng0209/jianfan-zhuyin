@@ -23,10 +23,18 @@
 
 #include "MemoryMappedFile.h"
 
+#ifdef _WIN32
+#include <windows.h>
+#include <fcntl.h>
+#include <io.h>
+#include <limits>
+#include <string>
+#else
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#endif
 
 #include <utility>
 
@@ -53,6 +61,29 @@ bool MemoryMappedFile::open(const char* path) {
     return false;
   }
 
+#ifdef _WIN32
+  int count = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, path, -1, nullptr, 0);
+  if (count <= 1) { return false; }
+  std::wstring wide(static_cast<size_t>(count), L'\0');
+  if (!MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, path, -1, wide.data(), count)) { return false; }
+  HANDLE file = CreateFileW(wide.c_str(), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
+                            nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+  if (file == INVALID_HANDLE_VALUE) { return false; }
+  LARGE_INTEGER size;
+  if (!GetFileSizeEx(file, &size) || size.QuadPart <= 0 ||
+      static_cast<unsigned long long>(size.QuadPart) > std::numeric_limits<size_t>::max()) {
+    CloseHandle(file); return false;
+  }
+  HANDLE mapping = CreateFileMappingW(file, nullptr, PAGE_READONLY, 0, 0, nullptr);
+  if (!mapping) { CloseHandle(file); return false; }
+  data_ = MapViewOfFile(mapping, FILE_MAP_READ, 0, 0, 0);
+  CloseHandle(mapping);
+  if (!data_) { CloseHandle(file); return false; }
+  fd_ = _open_osfhandle(reinterpret_cast<intptr_t>(file), _O_RDONLY | _O_BINARY);
+  if (fd_ == -1) { UnmapViewOfFile(data_); data_ = nullptr; CloseHandle(file); return false; }
+  length_ = static_cast<size_t>(size.QuadPart);
+  return true;
+#else
   fd_ = ::open(path, O_RDONLY);
   if (fd_ == -1) {
     return false;
@@ -78,14 +109,20 @@ bool MemoryMappedFile::open(const char* path) {
   }
 
   return true;
+#endif
 }
 
 void MemoryMappedFile::close() {
   if (fd_ == -1) {
     return;
   }
+#ifdef _WIN32
+  UnmapViewOfFile(data_);
+  _close(fd_);
+#else
   munmap(data_, length_);
   ::close(fd_);
+#endif
   fd_ = -1;
   length_ = 0;
   data_ = nullptr;

@@ -1,0 +1,31 @@
+#include <windows.h>
+#pragma code_page(65001)
+1 ICON "Jianfan.ico"
+1 VERSIONINFO
+FILEVERSION 0,3,0,4
+PRODUCTVERSION 0,3,0,4
+FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+FILEOS VOS_NT_WINDOWS32
+#ifdef JIANFAN_SETTINGS
+FILETYPE VFT_APP
+#else
+FILETYPE VFT_DLL
+#endif
+BEGIN
+ BLOCK "StringFileInfo"
+ BEGIN
+  BLOCK "040404b0"
+  BEGIN
+   VALUE "CompanyName", "Jianfan Zhuyin contributors\0"
+   VALUE "FileDescription", "簡繁注音\0"
+   VALUE "FileVersion", "0.3.0\0"
+   VALUE "LegalCopyright", "Copyright 2026 Jianfan Zhuyin contributors\0"
+   VALUE "ProductName", "Jianfan Zhuyin\0"
+   VALUE "ProductVersion", "0.3.0\0"
+  END
+ END
+ BLOCK "VarFileInfo"
+ BEGIN
+  VALUE "Translation", 0x0404, 1200
+ END
+END

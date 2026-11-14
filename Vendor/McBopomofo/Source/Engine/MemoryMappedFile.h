@@ -25,6 +25,8 @@
 #define SRC_ENGINE_MEMORYMAPPEDFILE_H_
 
 #include <cstddef>
+#include <filesystem>
+#include <string>
 
 namespace McBopomofo {
 
@@ -46,6 +48,10 @@ class MemoryMappedFile {
 
   ~MemoryMappedFile();
   bool open(const char* path);
+  bool open(const std::filesystem::path& path) {
+    auto value = path.u8string();
+    return open(std::string(value.begin(), value.end()).c_str());
+  }
   void close();
 
   bool isOpen() const { return fd_ != -1; }
