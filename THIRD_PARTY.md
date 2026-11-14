@@ -2,6 +2,8 @@
 
 本项目的输入法基于 McBopomofo 定制，保留上游版权及许可文件。
 
+跨平台本機資料儲存使用 JSON for Modern C++ 3.12.0（MIT），完整聲明位於 [Vendor/nlohmann/LICENSE.MIT](Vendor/nlohmann/LICENSE.MIT)。
+
 詞語對應資料另包含源自 libtabe tsi.src 的 BSD 授權衍生資料；完整聲明保留於 `licenses/libtabe-tsi-COPYING` 及 `licenses/libtabe-COPYING`。OpenCC 使用的 darts-clone 為 BSD 2-clause，聲明保留於 `licenses/darts-clone-COPYING.md`。這些聲明同時納入後續安裝包的 ThirdPartyNotices。
 
 | 组件 | 锁定版本或修订 | 来源 | 许可 |

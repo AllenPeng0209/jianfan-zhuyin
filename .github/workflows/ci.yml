@@ -10,9 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - run: python3 scripts/generate-data.py
       - run: cmake -S . -B build/EngineTests -DCMAKE_BUILD_TYPE=Release
-      - run: cmake --build build/EngineTests --target McBopomofoLMLibTest --parallel 2
+      - run: cmake --build build/EngineTests --parallel 2
       - run: build/EngineTests/Vendor/McBopomofo/Source/Engine/McBopomofoLMLibTest
+      - run: build/EngineTests/JianfanCoreTest
+      - run: build/EngineTests/Vendor/McBopomofo/Source/Engine/Mandarin/MandarinTest
+      - run: build/EngineTests/Vendor/McBopomofo/Source/Engine/gramambular2/gramambular2_test
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: python scripts/generate-data.py
+      - run: cmake -S . -B build/Windows -A x64
+      - run: cmake --build build/Windows --config Release --parallel 4
+      - run: build/Windows/Release/JianfanCoreTest.exe
   macos:
     runs-on: xcode-27
     steps:
