@@ -10,11 +10,10 @@ namespace {
 struct Registration {
   HMODULE module = nullptr;
   HRESULT (__stdcall *unregister)() = nullptr;
-  LANGID originalLanguage = LOWORD(GetKeyboardLayout(0));
+  HKL originalLayout = GetKeyboardLayout(0);
   ~Registration() {
     if (unregister) {
-      Microsoft::WRL::ComPtr<ITfInputProcessorProfiles> profiles;
-      if (SUCCEEDED(CoCreateInstance(CLSID_TF_InputProcessorProfiles,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&profiles)))) { profiles->ChangeCurrentLanguage(originalLanguage); }
+      ActivateKeyboardLayout(originalLayout,0);
       SetUserProfileEnabled(false); unregister();
     }
     if (module) { FreeLibrary(module); }
@@ -67,14 +66,13 @@ TEST(WindowsTIP, FactoryProvidesNativeTSFAndCandidateUIContracts) {
   std::cout << "Current keyboard language: " << LOWORD(GetKeyboardLayout(0)) << "; test language: " << JianfanLanguage << "\n";
   ComPtr<ITfInputProcessorProfileMgr> profiles;
   ASSERT_EQ(CoCreateInstance(CLSID_TF_InputProcessorProfiles,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&profiles)),S_OK);
-  ComPtr<ITfInputProcessorProfiles> languages;
-  ASSERT_EQ(profiles.As(&languages),S_OK);
   HKL layout = LoadKeyboardLayoutW(L"00000404",KLF_NOTELLSHELL);
   std::cout << "Traditional Chinese keyboard layout: " << layout << "; error: " << GetLastError() << "\n";
   ASSERT_NE(layout,nullptr);
+  ASSERT_NE(ActivateKeyboardLayout(layout,0),nullptr);
   MSG message;
   while (PeekMessageW(&message,nullptr,0,0,PM_REMOVE)) { TranslateMessage(&message); DispatchMessageW(&message); }
-  ASSERT_EQ(languages->ChangeCurrentLanguage(JianfanLanguage),S_OK);
+  ASSERT_EQ(LOWORD(GetKeyboardLayout(0)),JianfanLanguage);
   ASSERT_EQ(profiles->ActivateProfile(TF_PROFILETYPE_INPUTPROCESSOR,JianfanLanguage,CLSID_Jianfan,GUID_JianfanProfile,nullptr,TF_IPPMF_FORPROCESS | TF_IPPMF_ENABLEPROFILE),S_OK);
   ComPtr<ITfFunctionProvider> provider;
   ASSERT_EQ(manager->GetFunctionProvider(CLSID_Jianfan,&provider),S_OK);
