@@ -33,8 +33,11 @@ fi
   "$JF_PRODUCTS/JianfanZhuyinInstaller.app"
 
 /usr/bin/codesign --force --deep --sign - --timestamp=none "$JF_PRODUCTS/JianfanZhuyin.app"
+# Resources contains a separate installable app; sign it before sealing the installer.
+/usr/bin/codesign --force --deep --sign - --timestamp=none "$JF_PRODUCTS/JianfanZhuyinInstaller.app/Contents/Resources/JianfanZhuyin.app"
 /usr/bin/codesign --force --deep --sign - --timestamp=none "$JF_PRODUCTS/JianfanZhuyinInstaller.app"
 /usr/bin/codesign --verify --deep --strict "$JF_PRODUCTS/JianfanZhuyinInstaller.app"
+/usr/bin/python3 "$JF_ROOT/scripts/audit-macos-build.py" "$JF_PRODUCTS"
 
 JF_STAGE="$JF_BUILD/dmg-stage"
 mkdir -p "$JF_STAGE"

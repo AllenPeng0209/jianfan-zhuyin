@@ -4,7 +4,13 @@
 
 **Windows 0.3.0** 安裝包見 [公開下載](https://github.com/AllenPeng0209/jianfan-zhuyin/releases/tag/v0.3.0)，支援 Windows 11 x64 與 32 位元應用。原始碼採開源授權。
 
-Mac 本機試用版為 **0.2.0，構建號 3**，已完成離線個人化功能。Mac 本機安裝包使用 ad hoc 簽署，正式公開版本另需 Developer ID 簽署與公證。iOS 0.3 原生鍵盤、主程式與上架資料已備妥，App Store 版本仍待正式簽署、真機驗收及 Apple 審查，目前沒有一般使用者可安裝的 iOS 下載。
+| 平台 | 已編譯安裝包 | 使用狀態 |
+| --- | --- | --- |
+| Windows 11 x64 | [下載 EXE](https://github.com/AllenPeng0209/jianfan-zhuyin/releases/download/v0.3.0/JianfanZhuyin-0.3.0-windows-x64.exe) | 安裝後用 Win + Space 選用；支援 32 位元應用，尚無商業程式碼簽章 |
+| Apple Silicon Mac，macOS 13+ | [下載 DMG 試用版](https://github.com/AllenPeng0209/jianfan-zhuyin/releases/download/v0.3.0/JianfanZhuyin-0.2.0-macOS-arm64-preview.dmg) | 內含完整安裝器，不需 Xcode；尚未 Apple 公證，部分 Mac 可能阻止首次開啟 |
+| iPhone / iPad | 尚無通用安裝下載 | 仍待正式簽署、真機驗收及 App Store 或 TestFlight 分發 |
+
+校驗碼見 Release 的 `SHA256SUMS-desktop.txt`。Mac 試用版為 **0.2.0，構建號 3**，已完成離線個人化功能，並獨立檢查安裝器內的輸入法副本簽名。它使用 ad hoc 簽署，正式公開版本另需 Developer ID 簽署與公證。iOS 0.3 原生鍵盤、主程式與上架資料已備妥，未簽署封存不作為一般使用者安裝包分發。
 
 各平台建置與目前發行狀態見 [Windows](docs/WINDOWS.md)、[iOS](docs/IOS.md) 與 [平台說明](docs/PLATFORMS.md)。隱私政策見 [PRIVACY.md](docs/PRIVACY.md)。
 

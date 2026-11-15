@@ -4,7 +4,7 @@ The shared product is an offline Bopomofo input method with Simplified and Tradi
 
 | Platform | Current state | Native integration |
 | --- | --- | --- |
-| macOS | 0.2 local preview implemented and installed on the development Mac | InputMethodKit and AppKit |
+| macOS | 0.2 downloadable Apple Silicon installer preview; embedded payload signature checked; Developer ID/notarization pending | InputMethodKit and AppKit |
 | Windows | 0.3 native service and dictionary manager verified on x64/x86; installer and uninstall preservation checks passed | Text Services Framework |
 | iOS | Native app and keyboard built; iPhone/iPad component tests and unsigned device archive verified; signing and store release pending | Custom Keyboard extension and a containing app |
 
